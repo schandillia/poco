@@ -12,8 +12,8 @@ export default function Home() {
     red: ff0000
     blue: 0000ff
   */
-  const grad1 = 'relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#0000ff] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
-  const grad2 = 'relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#0000ff] opacity-30 sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]'
+  const grad1 = 'relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#ffff00] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
+  const grad2 = 'relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#ffff00] opacity-30 sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]'
   return (
     <>
       <MaxWidthWrapper className='mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center'>
