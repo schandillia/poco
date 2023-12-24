@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar'
-// import Providers from '@/components/Providers'
+import Providers from '@/components/Providers'
 import type { Metadata } from 'next'
 import { cn } from '@/lib/utils'
 import { Inter } from 'next/font/google'
@@ -24,14 +24,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className='light'>
-      <body
-        className={cn(
-          'min-h-screen font-sans antialiased',
-          inter.className
-        )}>
-        <Navbar />
-        {children}
+      <Providers>
+        <body
+          className={cn(
+            'min-h-screen font-sans antialiased',
+            inter.className
+          )}>
+          <Navbar />
+          {children}
         </body>
+      </Providers>
     </html>
   )
 }
