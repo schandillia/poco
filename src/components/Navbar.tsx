@@ -21,7 +21,7 @@ const Navbar = () => {
           <Link
             href='/'
             className='flex z-40 font-semibold'>
-            <span>Poco</span>
+            <span>{process.env.BRAND}</span>
           </Link>
 
           {/*add mobile navbar*/}
