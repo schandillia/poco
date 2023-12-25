@@ -30,6 +30,7 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "sharp": "^0.33.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
@@ -47,8 +48,8 @@
     "typescript": "^5"
   },
   "author": {
-    "name": "Your Name",
-    "email": "your.email@example.com",
+    "name": "Amit Schandillia",
+    "email": "amit@schandillia.com",
     "url": "https://poco.com"
   },
   "repository": {
