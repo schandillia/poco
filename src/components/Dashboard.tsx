@@ -98,7 +98,11 @@ const Dashboard = () => {
                     className='w-full'
                     variant='destructiveLight'
                   >
-                    <Trash className='h-4 w-4' />
+                    {currentlyDeletingFile === file.id ? (
+                      <Loader2 className='h-4 w-4 animate-spin' />
+                    ) : (
+                      <Trash className='h-4 w-4' />
+                    )}
                   </Button>
 
                   {/* <Button
