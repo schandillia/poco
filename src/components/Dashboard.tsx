@@ -101,7 +101,8 @@ const Dashboard = () => {
                     <Trash className='h-4 w-4' />
                   </Button>
 
-                  {/* <Button
+                  {/*
+                  <Button
                     onClick={() =>
                       deleteFile({ id: file.id })
                     }
