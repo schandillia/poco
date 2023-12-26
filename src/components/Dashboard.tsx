@@ -28,6 +28,8 @@ const Dashboard = () => {
 
   const { data: files, isLoading } =
     trpc.getUserFiles.useQuery()
+  
+  const { mutate: deleteFile } = trpc.deleteFile.useMutation()
 
   /*const { mutate: deleteFile } =
     trpc.deleteFile.useMutation({
@@ -94,6 +96,7 @@ const Dashboard = () => {
                     mocked
                   </div>
                   <Button
+                    onClick={() => deleteFile({id: file.id})}
                     size='sm'
                     className='w-full'
                     variant='destructiveLight'
