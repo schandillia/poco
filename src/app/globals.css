@@ -49,6 +49,23 @@
   }
 }
 
+/* Additional custom color definitions
+   In order to use these,
+   the variables must be referenced into tailwind.config.ts
+   and the relevant component file, e.g., button.tsx
+*/
+@layer base {
+  :root {
+    --destructiveLight: 0 86% 97%;
+    --destructiveLight-foreground: 0 74% 42%;
+  }
+
+  .dark {
+    --destructiveLight: 0 86% 97%;
+    --destructiveLight-foreground: 0 74% 42%;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
