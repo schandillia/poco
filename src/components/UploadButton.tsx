@@ -16,33 +16,31 @@ import { Button } from "./ui/button"
 import { trpc } from "@/app/_trpc/client"
 import { useRouter } from "next/navigation"
 
-
 const UploadButton = ({
-  isSubscribed,
+    isSubscribed,
 }: {
-  isSubscribed: boolean
+    isSubscribed: boolean
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    return (
+        <Dialog
+            open={isOpen}
+            onOpenChange={(v) => {
+                if (!v) {
+                    setIsOpen(v)
+                }
+            }}>
+            <DialogTrigger
+                onClick={() => setIsOpen(true)}
+                asChild>
+                <Button>Upload PDF</Button>
+            </DialogTrigger>
 
-  return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(v) => {
-        if (!v) {
-          setIsOpen(v)
-        }
-      }}>
-      <DialogTrigger
-        onClick={() => setIsOpen(true)}
-        asChild>
-        <Button>Upload PDF</Button>
-      </DialogTrigger>
-
-      <DialogContent>
-        <div>Test!!</div>
-      </DialogContent>
-    </Dialog>
-  )
+            <DialogContent>
+                <div>Test!!</div>
+            </DialogContent>
+        </Dialog>
+    )
 }
 
 export default UploadButton
