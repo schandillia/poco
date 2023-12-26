@@ -24,25 +24,22 @@ const Dashboard = () => {
     const [currentlyDeletingFile, setCurrentlyDeletingFile] =
     useState<string | null>(null)
 
-//   const utils = trpc.useContext()
+  const utils = trpc.useContext()
 
   const { data: files, isLoading } =
     trpc.getUserFiles.useQuery()
   
-  const { mutate: deleteFile } = trpc.deleteFile.useMutation()
-
-  /*const { mutate: deleteFile } =
-    trpc.deleteFile.useMutation({
-      onSuccess: () => {
-        utils.getUserFiles.invalidate()
-      },
-      onMutate({ id }) {
-        setCurrentlyDeletingFile(id)
-      },
-      onSettled() {
-        setCurrentlyDeletingFile(null)
-      },
-    })*/
+  const { mutate: deleteFile } = trpc.deleteFile.useMutation({
+    onSuccess: () => {
+      utils.getUserFiles.invalidate()
+    },
+    onMutate({ id }) {
+      setCurrentlyDeletingFile(id)
+    },
+    onSettled() {
+      setCurrentlyDeletingFile(null)
+    },
+  })
 
   return (
     <main className='mx-auto max-w-7xl md:p-10'>
