@@ -5,7 +5,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Button } from "./ui/button"
-import { Expand, Loader2 } from "lucide-react"
+import { Focus, Loader2 } from "lucide-react"
 import SimpleBar from "simplebar-react"
 import { Document, Page } from "react-pdf"
 import { useToast } from "./ui/use-toast"
@@ -38,7 +38,7 @@ const PdfFullscreen = ({ fileUrl }: PdfFullscreenProps) => {
           variant="ghost"
           className="gap-1.5"
           aria-label="fullscreen">
-          <Expand className="h-4 w-4" />
+          <Focus className="h-4 w-4" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-7xl w-full">

@@ -5,6 +5,7 @@ import {
   ChevronRight,
   Loader2,
   RotateCw,
+  RotateCcw,
   ZoomIn,
   ZoomOut,
 } from "lucide-react"
@@ -135,7 +136,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           </Button>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-0">
         {/* Zoom out */}
         <Button
             disabled={scale === 1}
@@ -163,7 +164,13 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
         </span>
         </div>
 
-        <div className="space-x-2">
+        <div className="space-x-0">
+          <Button
+            onClick={() => setRotation((prev) => prev - 90)}
+            variant="ghost"
+            aria-label="rotate 90 degrees">
+            <RotateCcw className="h-4 w-4" />
+          </Button>
           <Button
             onClick={() => setRotation((prev) => prev + 90)}
             variant="ghost"
