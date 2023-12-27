@@ -24,12 +24,6 @@ import { z } from "zod"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
 
 import SimpleBar from "simplebar-react"
 import PdfFullscreen from "./PdfFullscreen"
