@@ -7,13 +7,11 @@ import { Button } from "./ui/button";
 import Dropzone from "react-dropzone"
 
 import { Cloud, File, Loader2 } from "lucide-react"
-// import { Progress } from "./ui/progress"
-// import { useUploadThing } from "@/lib/uploadthing"
+import { Progress } from "./ui/progress"
+import { useUploadThing } from "@/lib/uploadthing"
 import { useToast } from "./ui/use-toast"
 import { trpc } from "@/app/_trpc/client";
 import { useRouter } from "next/navigation";
-import { Progress } from "./ui/progress";
-import { useUploadThing } from "@/lib/uploadthing";
 
 const UploadDropzone = () => {
   const router = useRouter()
@@ -44,6 +42,8 @@ const UploadDropzone = () => {
         return prevProgress + 5
       })
     }, 500)
+
+    return interval
   }
 
   return (
@@ -136,13 +136,13 @@ const UploadButton = (
     // isSubscribed: boolean
   },
 ) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false)
   return (
     <Dialog
       open={isOpen}
       onOpenChange={(v) => {
         if (!v) {
-          setIsOpen(v);
+          setIsOpen(v)
         }
       }}
     >
@@ -154,7 +154,7 @@ const UploadButton = (
         <UploadDropzone />
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
-export default UploadButton;
+export default UploadButton
