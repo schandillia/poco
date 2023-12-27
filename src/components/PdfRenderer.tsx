@@ -161,6 +161,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
+                    
                     <Button
                         onClick={() => setRotation((prev) => prev + 90)}
                         variant="ghost"
