@@ -40,6 +40,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
+    "react-full-screen": "^1.1.1",
     "react-hook-form": "^7.49.2",
     "react-loading-skeleton": "^3.3.1",
     "react-pdf": "^7.6.0",

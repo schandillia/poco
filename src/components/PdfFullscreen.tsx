@@ -5,11 +5,14 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Button } from "./ui/button"
-import { Focus, Loader } from "lucide-react"
+import { Expand, Loader } from "lucide-react"
 import SimpleBar from "simplebar-react"
 import { Document, Page } from "react-pdf"
 import { useToast } from "./ui/use-toast"
 import { useResizeDetector } from "react-resize-detector"
+
+import React, {useCallback} from 'react'
+import { FullScreen, useFullScreenHandle } from "react-full-screen"
 
 interface PdfFullscreenProps {
   fileUrl: string
@@ -23,29 +26,23 @@ const PdfFullscreen = ({ fileUrl }: PdfFullscreenProps) => {
 
   const { width, ref } = useResizeDetector()
 
+  const handle = useFullScreenHandle()
+
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(v) => {
-        if (!v) {
-          setIsOpen(v)
-        }
-      }}>
-      <DialogTrigger
-        onClick={() => setIsOpen(true)}
-        asChild>
-        <Button
-          variant="ghost"
-          className="gap-1.5"
-          aria-label="fullscreen">
-          <Focus className="h-4 w-4" />
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-7xl w-full">
-        <SimpleBar
-          autoHide={false}
-          className="max-h-[calc(100vh-10rem)] mt-6">
-          <div ref={ref}>
+    <>
+      <Button
+        onClick={handle.enter}
+        variant="ghost"
+        className="gap-1.5"
+        aria-label="fullscreen">
+        <Expand className="h-4 w-4" />
+      </Button>
+      <FullScreen handle={handle}>
+        {handle.active ?
+          <SimpleBar
+            autoHide={false}
+            className="max-h-full">
+            <div ref={ref}>
             <Document
               loading={
                 <div className="flex justify-center">
@@ -73,9 +70,10 @@ const PdfFullscreen = ({ fileUrl }: PdfFullscreenProps) => {
               ))}
             </Document>
           </div>
-        </SimpleBar>
-      </DialogContent>
-    </Dialog>
+          </SimpleBar>
+        : null}
+      </FullScreen>
+    </>
   )
 }
 
