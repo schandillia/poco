@@ -72,8 +72,6 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
     resolver: zodResolver(CustomPageValidator),
   })
 
-  console.log(errors)
-
   const { width, ref } = useResizeDetector()
 
   const handlePageSubmit = ({
@@ -162,13 +160,13 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             {scale * 100}%
           </span>
           <Button
-            className="ml-6"
+            className="ml-6 uppercase"
             variant="secondary"
             onClick={() => {
               setScale(1)
             }}
           >
-            RESET
+            reset
           </Button>
         </div>
 
@@ -203,7 +201,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
               }
               onLoadError={() => {
                 toast({
-                  title: "Error loading PDF",
+                  title: "Error loading document",
                   description: "Please try again later",
                   variant: "destructive",
                 })

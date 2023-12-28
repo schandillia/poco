@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 
 import Dropzone from "react-dropzone"
 
-import { Cloud, File, Loader2 } from "lucide-react"
+import { FileUp , File, Loader2 } from "lucide-react"
 import { Progress } from "./ui/progress"
 import { useUploadThing } from "@/lib/uploadthing"
 import { useToast } from "./ui/use-toast"
@@ -89,7 +89,7 @@ const UploadDropzone = () => {
               className='flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100'
             >
               <div className='flex flex-col items-center justify-center pt-5 pb-6'>
-                <Cloud className='h-6 w-6 text-zinc-500 mb-2' />
+                <FileUp  className='h-6 w-6 text-zinc-500 mb-2' />
                 <p className='mb-2 text-sm text-zinc-700'>
                   <span className='font-semibold'>
                     Click to upload
