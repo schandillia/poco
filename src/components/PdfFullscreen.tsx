@@ -5,7 +5,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Button } from "./ui/button"
-import { Focus, Loader2 } from "lucide-react"
+import { Focus, Loader } from "lucide-react"
 import SimpleBar from "simplebar-react"
 import { Document, Page } from "react-pdf"
 import { useToast } from "./ui/use-toast"
@@ -49,7 +49,7 @@ const PdfFullscreen = ({ fileUrl }: PdfFullscreenProps) => {
             <Document
               loading={
                 <div className="flex justify-center">
-                  <Loader2 className="my-24 h-6 w-6 animate-spin" />
+                  <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                 </div>
               }
               onLoadError={() => {
