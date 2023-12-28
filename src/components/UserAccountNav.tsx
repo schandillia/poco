@@ -4,14 +4,14 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-  } from "./ui/dropdown-menu"
-  import { Button } from "./ui/button"
-  import { Avatar, AvatarFallback } from "./ui/avatar"
-  import Image from "next/image"
-  import { Icons } from "./Icons"
-  import Link from "next/link"
-  import { Gem } from "lucide-react"
-  import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server"
+} from "./ui/dropdown-menu"
+import { Button } from "./ui/button"
+import { Avatar, AvatarFallback } from "./ui/avatar"
+import Image from "next/image"
+import { Icons } from "./Icons"
+import Link from "next/link"
+import { Gem } from "lucide-react"
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server"
 
 interface UserAccountNavProps {
     email: string | undefined
