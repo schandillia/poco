@@ -137,31 +137,39 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
         </div>
 
         <div className="flex items-center gap-0">
-        {/* Zoom out */}
-        <Button
+          {/* Zoom out */}
+          <Button
             disabled={scale === 1}
             variant="ghost"
             onClick={() => {
-                setScale(scale - 0.25)
+              setScale(scale - 0.25)
             }}
-        >
+          >
             <ZoomOut className="h-4 w-4" />
-        </Button>
-        {/* Zoom in */}
-        <Button
+          </Button>
+          {/* Zoom in */}
+          <Button
             variant="ghost"
             onClick={() => {
-                setScale(scale + 0.25)
+              setScale(scale + 0.25)
             }}
-        >
+          >
             <ZoomIn className="h-4 w-4" />
-        </Button>
-
-        <span
+          </Button>
+          <span
             className="text-sm text-gray-500 dark:text-white"
-        >
+          >
             {scale * 100}%
-        </span>
+          </span>
+          <Button
+            className="ml-6"
+            variant="secondary"
+            onClick={() => {
+              setScale(1)
+            }}
+          >
+            RESET
+          </Button>
         </div>
 
         <div className="space-x-0">
