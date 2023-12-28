@@ -32,7 +32,7 @@ const ChatWrapper = ({fileId}: chatWrapperProps) => {
         <div className="relative min-h-full bg-zinc-50 flex divide-y divide-zinc-200 flex-coljustify-between gap-2">
             <div className="flex-1 flex justify-center items-center flex-col mb-28">
                 <div className="flex flex-col items-center gap-2">
-                    <Loader className="h-8 w-8 text-green-500 animate-spin" />
+                    <Loader className="h-8 w-8 text-green-600 animate-spin" />
                     <h3 className="font-semibold text-xl">
                         Loading...
                     </h3>
@@ -49,7 +49,7 @@ const ChatWrapper = ({fileId}: chatWrapperProps) => {
         <div className="relative min-h-full bg-zinc-50 flex divide-y divide-zinc-200 flex-coljustify-between gap-2">
             <div className="flex-1 flex justify-center items-center flex-col mb-28">
                 <div className="flex flex-col items-center gap-2">
-                    <Loader className="h-8 w-8 text-green-500 animate-spin" />
+                    <Loader className="h-8 w-8 text-green-600 animate-spin" />
                     <h3 className="font-semibold text-xl">
                         Processing paper...
                     </h3>
