@@ -4,7 +4,7 @@ import { trpc } from "@/app/_trpc/client"
 import UploadButton from "./UploadButton"
 import {
   Ghost,
-  Loader2,
+  Loader,
   MessageSquare,
   Plus,
   Trash,
@@ -100,7 +100,7 @@ const Dashboard = () => {
                     variant='destructiveLight'
                   >
                     {currentlyDeletingFile === file.id ? (
-                      <Loader2 className='h-4 w-4 animate-spin' />
+                      <Loader className='h-4 w-4 animate-spin' />
                     ) : (
                       <Trash className='h-4 w-4' />
                     )}
@@ -117,7 +117,7 @@ const Dashboard = () => {
           <h3 className='font-semibold text-xl'>
             Pretty empty around here
           </h3>
-          <p>Let&#8217;s upload your first PDF.</p>
+          <p>Let&#8217;s upload your first paper.</p>
         </div>
       )}
     </main>

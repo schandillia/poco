@@ -3,7 +3,7 @@
 import {
   ChevronLeft,
   ChevronRight,
-  Loader2,
+  Loader,
   RotateCw,
   RotateCcw,
   ZoomIn,
@@ -196,7 +196,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             <Document
               loading={
                 <div className="flex justify-center">
-                  <Loader2 className="my-24 h-6 w-6 animate-spin" />
+                  <Loader className="my-24 h-6 w-6 animate-spin" />
                 </div>
               }
               onLoadError={() => {
@@ -230,7 +230,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
                 key={"@" + scale}
                 loading={
                   <div className="flex justify-center">
-                    <Loader2 className="my-24 h-6 w-6 animate-spin" />
+                    <Loader className="my-24 h-6 w-6 animate-spin" />
                   </div>
                 }
                 onRenderSuccess={() =>
