@@ -28,8 +28,9 @@ import { cn } from "@/lib/utils"
 
 import SimpleBar from "simplebar-react"
 import PdfFullscreen from "./PdfFullscreen"
+import PdfFocus from "./PdfFocus"
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 interface PdfRendererProps {
   url: string
@@ -134,7 +135,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           </Button>
         </div>
 
-        <div className="flex items-center gap-0">
+        <div className="flex items-center gap-2">
           {/* Zoom out */}
           <Button
             disabled={scale === 1}
@@ -145,6 +146,11 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           >
             <ZoomOut className="h-4 w-4" />
           </Button>
+          <span
+            className="text-sm text-gray-500 dark:text-white"
+          >
+            {scale * 100}%
+          </span>
           {/* Zoom in */}
           <Button
             variant="ghost"
@@ -154,13 +160,8 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           >
             <ZoomIn className="h-4 w-4" />
           </Button>
-          <span
-            className="text-sm text-gray-500 dark:text-white"
-          >
-            {scale * 100}%
-          </span>
           <Button
-            className="ml-6 uppercase"
+            className="ml-2 uppercase"
             variant="secondary"
             onClick={() => {
               setScale(1)
@@ -170,7 +171,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           </Button>
         </div>
 
-        <div className="space-x-0">
+        <div className="flex gap-0">
           <Button
             onClick={() => setRotation((prev) => prev - 90)}
             variant="ghost"
@@ -184,6 +185,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             <RotateCw className="h-4 w-4" />
           </Button>
 
+          <PdfFocus fileUrl={url} />
           <PdfFullscreen fileUrl={url} />
         </div>
       </div>
