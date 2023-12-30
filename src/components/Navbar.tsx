@@ -10,6 +10,7 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server"
 import { ArrowRight } from "lucide-react"
 import UserAccountNav from "./UserAccountNav"
+import ThemeToggle from "./ThemeToggle"
 // import MobileNav from "./MobileNav"
 
 const Navbar = async () => {
@@ -74,6 +75,7 @@ const Navbar = async () => {
               />
             </>}
           </div>
+          <ThemeToggle />
         </div>
       </MaxWidthWrapper>
     </nav>
