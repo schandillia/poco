@@ -33,7 +33,7 @@ export default function Home() {
           Chat with your <span className="text-green-600">papers</span> in
           seconds.
         </h1>
-        <p className="mt-5 max-w-prose text-zinc-700 dark:text-white sm:text-lg">
+        <p className="mt-5 max-w-prose text-zinc-700 dark:text-gray-400 sm:text-lg">
           {process.env.BRAND} allows you to have conversations with any document
           document. Simply upload your file and start asking questions right
           away.
@@ -100,10 +100,10 @@ export default function Home() {
       <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56">
         <div className="mb-12 px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="mt-2 font-bold text-4xl text-gray-900 sm:text-5xl">
+            <h2 className="mt-2 font-bold text-4xl sm:text-5xl">
               Start chatting in minutes
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
               Reading and citing your papers has never been easier than with{" "}
               {process.env.BRAND}.
             </p>
@@ -118,7 +118,7 @@ export default function Home() {
               <span className="text-xl font-semibold">
                 Sign up for an account
               </span>
-              <span className="mt-2 text-zinc-700">
+              <span className="mt-2 text-zinc-700 dark:text-gray-400">
                 Either starting out with a free plan or choose our{" "}
                 <Link
                   href="/pricing"
@@ -136,7 +136,7 @@ export default function Home() {
               <span className="text-xl font-semibold">
                 Upload your paper
               </span>
-              <span className="mt-2 text-zinc-700">
+              <span className="mt-2 text-zinc-700 dark:text-gray-400">
                 We&apos;ll process your file and make it ready for you to chat
                 with.
               </span>
@@ -148,7 +148,7 @@ export default function Home() {
               <span className="text-xl font-semibold">
                 Start asking questions
               </span>
-              <span className="mt-2 text-zinc-700">
+              <span className="mt-2 text-zinc-700 dark:text-gray-400">
                 It&apos;s that simple. Try out {process.env.BRAND} today - it
                 really takes less than a minute.
               </span>
