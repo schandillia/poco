@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props, react/prop-types, react/jsx-props-no-spreading, import/prefer-default-export */
+
 "use client"
 
 import * as React from "react"
@@ -19,17 +21,17 @@ const Progress = React.forwardRef<
     ref={ref}
     className={cn(
       "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
-      className
+      className,
     )}
     {...props}
   >
     <ProgressPrimitive.Indicator
       className={cn(
         "h-full w-full flex-1 bg-primary transition-all",
-        indicatorColor
+        indicatorColor,
       )}
       style={{
-        transform: `translateX(-${100 - (value || 0)}%)`
+        transform: `translateX(-${100 - (value || 0)}%)`,
       }}
     />
   </ProgressPrimitive.Root>

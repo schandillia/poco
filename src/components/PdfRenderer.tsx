@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-shadow, react/jsx-props-no-spreading */
+
 "use client"
 
 import {
@@ -13,20 +15,20 @@ import { Document, Page, pdfjs } from "react-pdf"
 
 import "react-pdf/dist/Page/AnnotationLayer.css"
 import "react-pdf/dist/Page/TextLayer.css"
-import { useToast } from "./ui/use-toast"
 
 import { useResizeDetector } from "react-resize-detector"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
 import { useState } from "react"
 
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import SimpleBar from "simplebar-react"
 import { cn } from "@/lib/utils"
 
-import SimpleBar from "simplebar-react"
+import { Input } from "./ui/input"
+import { Button } from "./ui/button"
+import { useToast } from "./ui/use-toast"
 import PdfFullscreen from "./PdfFullscreen"
 import PdfFocus from "./PdfFocus"
 
@@ -36,30 +38,24 @@ interface PdfRendererProps {
   url: string
 }
 
-const PdfRenderer = ({ url }: PdfRendererProps) => {
+function PdfRenderer({ url }: PdfRendererProps) {
   const { toast } = useToast()
 
   const [numPages, setNumPages] = useState<number>()
   const [currPage, setCurrPage] = useState<number>(1)
   const [scale, setScale] = useState<number>(1)
   const [rotation, setRotation] = useState<number>(0)
-  const [renderedScale, setRenderedScale] = useState<
-    number | null
-  >(null)
+  const [renderedScale, setRenderedScale] = useState<number | null>(null)
 
   const isLoading = renderedScale !== scale
 
   const CustomPageValidator = z.object({
     page: z
       .string()
-      .refine(
-        (num) => Number(num) > 0 && Number(num) <= numPages!
-      ),
+      .refine((num) => Number(num) > 0 && Number(num) <= numPages!),
   })
 
-  type TCustomPageValidator = z.infer<
-    typeof CustomPageValidator
-  >
+  type TCustomPageValidator = z.infer<typeof CustomPageValidator>
 
   const {
     register,
@@ -75,9 +71,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
 
   const { width, ref } = useResizeDetector()
 
-  const handlePageSubmit = ({
-    page,
-  }: TCustomPageValidator) => {
+  const handlePageSubmit = ({ page }: TCustomPageValidator) => {
     setCurrPage(Number(page))
     setValue("page", String(page))
   }
@@ -89,13 +83,12 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           <Button
             disabled={currPage <= 1}
             onClick={() => {
-              setCurrPage((prev) =>
-                prev - 1 > 1 ? prev - 1 : 1
-              )
+              setCurrPage((prev) => (prev - 1 > 1 ? prev - 1 : 1))
               setValue("page", String(currPage - 1))
             }}
             variant="ghost"
-            aria-label="previous page">
+            aria-label="previous page"
+          >
             <ChevronLeft className="h-4 w-4" />
           </Button>
 
@@ -104,7 +97,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
               {...register("page")}
               className={cn(
                 "w-12 h-8",
-                errors.page && "focus-visible:ring-red-500"
+                errors.page && "focus-visible:ring-red-500",
               )}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -119,18 +112,16 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           </div>
 
           <Button
-            disabled={
-              numPages === undefined ||
-              currPage === numPages
-            }
+            disabled={numPages === undefined || currPage === numPages}
             onClick={() => {
               setCurrPage((prev) =>
-                prev + 1 > numPages! ? numPages! : prev + 1
+                prev + 1 > numPages! ? numPages! : prev + 1,
               )
               setValue("page", String(currPage + 1))
             }}
             variant="ghost"
-            aria-label="next page">
+            aria-label="next page"
+          >
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
@@ -146,9 +137,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           >
             <ZoomOut className="h-4 w-4" />
           </Button>
-          <span
-            className="text-sm text-gray-500 dark:text-white"
-          >
+          <span className="text-sm text-gray-500 dark:text-white">
             {scale * 100}%
           </span>
           {/* Zoom in */}
@@ -175,13 +164,15 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           <Button
             onClick={() => setRotation((prev) => prev - 90)}
             variant="ghost"
-            aria-label="rotate 90 degrees">
+            aria-label="rotate 90 degrees"
+          >
             <RotateCcw className="h-4 w-4" />
           </Button>
           <Button
             onClick={() => setRotation((prev) => prev + 90)}
             variant="ghost"
-            aria-label="rotate 90 degrees">
+            aria-label="rotate 90 degrees"
+          >
             <RotateCw className="h-4 w-4" />
           </Button>
 
@@ -191,9 +182,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
       </div>
 
       <div className="flex-1 w-full max-h-screen">
-        <SimpleBar
-          autoHide={false}
-          className="max-h-[calc(100vh-10rem)]">
+        <SimpleBar autoHide={false} className="max-h-[calc(100vh-10rem)]">
           <div ref={ref}>
             <Document
               loading={
@@ -208,36 +197,33 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
                   variant: "destructive",
                 })
               }}
-              onLoadSuccess={({ numPages }) =>
-                setNumPages(numPages)
-              }
+              onLoadSuccess={({ numPages }) => setNumPages(numPages)}
               file={url}
-              className="max-h-full">
+              className="max-h-full"
+            >
               {isLoading && renderedScale ? (
                 <Page
-                  width={width ? width : 1}
+                  width={width || 1}
                   pageNumber={currPage}
                   scale={scale}
                   rotate={rotation}
-                  key={"@" + renderedScale}
+                  key={`@${renderedScale}`}
                 />
               ) : null}
 
               <Page
                 className={cn(isLoading ? "hidden" : "")}
-                width={width ? width : 1}
+                width={width || 1}
                 pageNumber={currPage}
                 scale={scale}
                 rotate={rotation}
-                key={"@" + scale}
+                key={`@${scale}`}
                 loading={
                   <div className="flex justify-center">
                     <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                   </div>
                 }
-                onRenderSuccess={() =>
-                  setRenderedScale(scale)
-                }
+                onRenderSuccess={() => setRenderedScale(scale)}
               />
             </Document>
           </div>

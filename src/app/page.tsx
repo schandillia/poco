@@ -1,8 +1,8 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import Image from "next/image";
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { buttonVariants } from "@/components/ui/button"
+import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 
 export default function Home() {
   /*
@@ -13,13 +13,13 @@ export default function Home() {
     blue: 0000ff
   */
   const grad1 =
-    "relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-br from-[#00ff00] via-[#00ffff] to-[#ffff00] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]";
+    "relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-br from-[#00ff00] via-[#00ffff] to-[#ffff00] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
   // const grad1 = 'relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#ffff00] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
   const grad2 =
-    "relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#ffff00] opacity-30 sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]";
+    "relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#ffff00] opacity-30 sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]"
 
   const poly =
-    "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)";
+    "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
 
   return (
     <>
@@ -133,9 +133,7 @@ export default function Home() {
           <li className="md:flex-1">
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-sm font-medium text-green-600">Step 2</span>
-              <span className="text-xl font-semibold">
-                Upload your paper
-              </span>
+              <span className="text-xl font-semibold">Upload your paper</span>
               <span className="mt-2 text-zinc-700 dark:text-gray-400">
                 We&apos;ll process your file and make it ready for you to chat
                 with.
@@ -172,5 +170,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }

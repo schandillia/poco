@@ -1,13 +1,15 @@
-import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+/* eslint-disable react/require-default-props */
 
-const MaxWidthWrapper = ({
+import { ReactNode } from "react"
+import { cn } from "@/lib/utils"
+
+function MaxWidthWrapper({
   className,
   children,
 }: {
-  className?: string;
-  children: ReactNode;
-}) => {
+  className?: string
+  children: ReactNode
+}) {
   return (
     <div
       className={cn(
@@ -17,7 +19,7 @@ const MaxWidthWrapper = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default MaxWidthWrapper;
+export default MaxWidthWrapper

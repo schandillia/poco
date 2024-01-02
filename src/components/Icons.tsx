@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export, react/jsx-props-no-spreading */
+
 import { LucideProps, UserRound } from "lucide-react"
 
 export const Icons = {

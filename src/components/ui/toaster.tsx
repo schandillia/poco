@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export, react/jsx-props-no-spreading, func-names */
+
 "use client"
 
 import {

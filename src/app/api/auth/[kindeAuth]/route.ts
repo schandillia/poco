@@ -1,3 +1,5 @@
-import { handleAuth } from "@kinde-oss/kinde-auth-nextjs/server";
+/* eslint-disable import/prefer-default-export */
 
-export const GET = handleAuth();
+import { handleAuth } from "@kinde-oss/kinde-auth-nextjs/server"
+
+export const GET = handleAuth()

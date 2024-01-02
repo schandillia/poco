@@ -1,14 +1,14 @@
-import Dashboard from "@/components/Dashboard";
-import { db } from "@/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import { redirect } from "next/navigation"
+import Dashboard from "@/components/Dashboard"
+import { db } from "@/db"
 // import { getUserSubscriptionPlan } from "@/lib/stripe"
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { redirect } from "next/navigation";
 
 const Page = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const { getUser } = getKindeServerSession()
+  const user = await getUser()
 
-  if (!user || !user.id) redirect("/auth-callback?origin=dashboard");
+  if (!user || !user.id) redirect("/auth-callback?origin=dashboard")
 
   /*
         user returns the following:
@@ -23,11 +23,11 @@ const Page = async () => {
     where: {
       id: user.id,
     },
-  });
+  })
 
-  if (!dbUser) redirect("/auth-callback?origin=dashboard");
+  if (!dbUser) redirect("/auth-callback?origin=dashboard")
 
-  return <Dashboard />;
-};
+  return <Dashboard />
+}
 
-export default Page;
+export default Page
