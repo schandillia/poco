@@ -49,12 +49,12 @@ const UserAccountNav = async ({
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="bg-white dark:bg-black" align="end">
+      <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-0.5 leading-none">
             {name && <p className="font-medium text-sm">{name}</p>}
             {email && (
-              <p className="w-[200px] truncate text-xs text-zinc-700 dark:text-zinc-400">
+              <p className="w-[200px] truncate text-xs text-gray-600 dark:text-gray-400">
                 {email}
               </p>
             )}

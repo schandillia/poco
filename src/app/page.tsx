@@ -14,7 +14,6 @@ export default function Home() {
   */
   const grad1 =
     "relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-br from-[#00ff00] via-[#00ffff] to-[#ffff00] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-  // const grad1 = 'relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#ffff00] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
   const grad2 =
     "relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#00ff00] to-[#ffff00] opacity-30 sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]"
 
@@ -33,7 +32,7 @@ export default function Home() {
           Chat with your <span className="text-green-600">papers</span> in
           seconds.
         </h1>
-        <p className="mt-5 max-w-prose text-zinc-700 dark:text-gray-400 sm:text-lg">
+        <p className="mt-5 max-w-prose text-gray-600 dark:text-gray-400 sm:text-lg">
           {process.env.BRAND} allows you to have conversations with any document
           document. Simply upload your file and start asking questions right
           away.
@@ -113,12 +112,12 @@ export default function Home() {
         {/* steps */}
         <ol className="my-8 space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0">
           <li className="md:flex-1">
-            <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
+            <div className="flex flex-col space-y-2 border-l-4 border-gray-300 dark:border-gray-500 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-sm font-medium text-green-600">Step 1</span>
               <span className="text-xl font-semibold">
                 Sign up for an account
               </span>
-              <span className="mt-2 text-zinc-700 dark:text-gray-400">
+              <span className="mt-2 text-gray-600 dark:text-gray-400">
                 Either starting out with a free plan or choose our{" "}
                 <Link
                   href="/pricing"
@@ -131,22 +130,22 @@ export default function Home() {
             </div>
           </li>
           <li className="md:flex-1">
-            <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
+            <div className="flex flex-col space-y-2 border-l-4 border-gray-300 dark:border-gray-500 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-sm font-medium text-green-600">Step 2</span>
               <span className="text-xl font-semibold">Upload your paper</span>
-              <span className="mt-2 text-zinc-700 dark:text-gray-400">
+              <span className="mt-2 text-gray-600 dark:text-gray-400">
                 We&apos;ll process your file and make it ready for you to chat
                 with.
               </span>
             </div>
           </li>
           <li className="md:flex-1">
-            <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
+            <div className="flex flex-col space-y-2 border-l-4 border-gray-300 dark:border-gray-500 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-sm font-medium text-green-600">Step 3</span>
               <span className="text-xl font-semibold">
                 Start asking questions
               </span>
-              <span className="mt-2 text-zinc-700 dark:text-gray-400">
+              <span className="mt-2 text-gray-600 dark:text-gray-400">
                 It&apos;s that simple. Try out {process.env.BRAND} today - it
                 really takes less than a minute.
               </span>

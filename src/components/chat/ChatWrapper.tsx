@@ -27,7 +27,7 @@ function ChatWrapper({ fileId }: chatWrapperProps) {
 
   if (isLoading)
     return (
-      <div className="relative min-h-full bg-zinc-50 dark:bg-zinc-900 flex divide-y divide-zinc-200 dark:divide-gray-700 flex-coljustify-between gap-2">
+      <div className="relative min-h-full bg-gray-50 dark:bg-zinc-800 flex divide-y divide-gray-300 dark:divide-gray-500 flex-coljustify-between gap-2">
         <div className="flex-1 flex justify-center items-center flex-col mb-28">
           <div className="flex flex-col items-center gap-2">
             <Loader className="h-8 w-8 text-green-600 animate-spin" />
@@ -43,7 +43,7 @@ function ChatWrapper({ fileId }: chatWrapperProps) {
 
   if (data?.status === "PROCESSING")
     return (
-      <div className="relative min-h-full bg-zinc-50 dark:bg-zinc-900 flex divide-y divide-zinc-200 dark:divide-gray-700 flex-coljustify-between gap-2">
+      <div className="relative min-h-full bg-gray-50 dark:bg-zinc-800 flex divide-y divide-gray-300 dark:divide-gray-500 flex-coljustify-between gap-2">
         <div className="flex-1 flex justify-center items-center flex-col mb-28">
           <div className="flex flex-col items-center gap-2">
             <Loader className="h-8 w-8 text-green-600 animate-spin" />
@@ -57,7 +57,7 @@ function ChatWrapper({ fileId }: chatWrapperProps) {
 
   if (data?.status === "FAILED")
     return (
-      <div className="relative min-h-full bg-zinc-50 dark:bg-zinc-900 flex divide-y divide-zinc-200 dark:divide-gray-700 flex-coljustify-between gap-2">
+      <div className="relative min-h-full bg-gray-50 dark:bg-zinc-800 flex divide-y divide-gray-300 dark:divide-gray-500 flex-coljustify-between gap-2">
         <div className="flex-1 flex justify-center items-center flex-col mb-28">
           <div className="flex flex-col items-center gap-2">
             <XCircle className="h-8 w-8 text-red-500" />
@@ -83,7 +83,7 @@ function ChatWrapper({ fileId }: chatWrapperProps) {
     )
 
   return (
-    <div className="relative min-h-full bg-zinc-50 dark:bg-zinc-900 flex divide-y divide-zinc-200 dark:divide-gray-700 flex-col justify-between gap-2">
+    <div className="relative min-h-full bg-gray-50 dark:bg-zinc-800 flex divide-y divide-gray-300 dark:divide-gray-500 flex-col justify-between gap-2">
       <div className="flex-1 flex justify-center items-center flex-col mb-28">
         <Messages />
       </div>

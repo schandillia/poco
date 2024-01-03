@@ -78,7 +78,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
 
   return (
     <div className="w-full rounded-md shadow flex flex-col items-center">
-      <div className="h-14 w-full border-b border-zinc-200 dark:border-gray-700 flex items-center justify-between px-2">
+      <div className="h-14 w-full border-b border-gray-300 dark:border-gray-500 flex items-center justify-between px-2">
         <div className="flex items-center gap-1.5">
           <Button
             disabled={currPage <= 1}
@@ -105,7 +105,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
                 }
               }}
             />
-            <p className="text-zinc-700 dark:text-zinc-400 text-sm space-x-1">
+            <p className="text-gray-600 dark:text-gray-400 text-sm space-x-1">
               <span>/</span>
               <span>{numPages ?? "x"}</span>
             </p>
@@ -137,7 +137,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
           >
             <ZoomOut className="h-4 w-4" />
           </Button>
-          <span className="text-sm text-gray-500 dark:text-white">
+          <span className="text-sm text-gray-600 dark:text-gray-400">
             {scale * 100}%
           </span>
           {/* Zoom in */}
