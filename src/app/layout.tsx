@@ -21,12 +21,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const bgStyle = "min-h-screen font-sans antialiased"
   return (
     <html lang="en" className="light">
       <Providers>
-        <body
-          className={cn("min-h-screen font-sans antialiased", inter.className)}
-        >
+        <body className={cn(bgStyle, inter.className)}>
           <Toaster />
           <Navbar />
           {children}
