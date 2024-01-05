@@ -6,6 +6,15 @@ import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 import toTitleCase from "../lib/toTitleCase"
 
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 function TitleCaseInput() {
   const [value, setValue] = useState("")
 
@@ -55,6 +64,107 @@ function TitleCaseInput() {
                 className={`text-green-600 ${value ? "" : "text-gray-400"}`}
               />
             </Button>
+          </div>
+          <h2 className="mb-3 mt-6 font-bold text-2xl">Style Guide</h2>
+          <div className="relative">
+            <TooltipProvider>
+              <RadioGroup
+                defaultValue="ama"
+                className="grid xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4"
+              >
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="ama" id="style1" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style1">AMA</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>American Medical Association Manual of Style</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="ap" id="style2" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style2">AP</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>The Associated Press Stylebook</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="apa" id="style3" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style3">APA</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>
+                        Publication Manual of the American Psychological
+                        Association
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="bluebook" id="style4" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style4">Bluebook</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>The Bluebook: A Uniform System of Citation</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="chicago" id="style5" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style5">Chicago</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>The Chicago Manual of Style</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="mla" id="style6" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style6">MLA</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>The Modern Language Association Style Manual</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="nyt" id="style7" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style7">NYT</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>The New York Times Manual of Style and Usage</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="col-span-1 space-x-2">
+                  <Tooltip>
+                    <RadioGroupItem value="wikipedia" id="style8" />
+                    <TooltipTrigger asChild>
+                      <Label htmlFor="style8">Wikipedia</Label>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-gray-600 text-white">
+                      <p>Wikipedia: Manual of Style</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </RadioGroup>
+            </TooltipProvider>
           </div>
         </div>
       </div>
