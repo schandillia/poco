@@ -135,13 +135,14 @@ function convertSentence(sentence: string): string {
   return convertedSentence
 }
 
-export default function toTitleCase(text: string): string {
+export default function toTitleCase(text: string, style: string): string {
   const sentences: string[] = text.toLowerCase().split("\n")
   const convertedSentences = []
   const sentenceCount = sentences.length
   for (let i = 0; i < sentenceCount; i += 1) {
     convertedSentences[i] = convertSentence(sentences[i])
   }
+  //   console.log(style)
   return convertedSentences.join("\n")
 }
 
