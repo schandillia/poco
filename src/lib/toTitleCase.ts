@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+
 const smallWords = [
   "a",
   "an",
@@ -81,6 +83,7 @@ const prepositions = [
 ]
 const articles = ["a", "an", "the"]
 const conjunctions = ["and", "but", "for", "nor", "or", "so", "yet"]
+const capitalizeHyphens = ["ama", "chicago", "mla", "wikipedia"]
 
 function sentenceToArray(sentence: string): string[] {
   const regex = /(\s+|\n|[^\w\s'’]+)/g
@@ -101,6 +104,18 @@ function capitalizeWord(word: string): string {
   return capitalizedWord
 }
 
+function isException(word: string): boolean {
+  const lists = [smallWords, articles, conjunctions, prepositions]
+
+  for (const list of lists) {
+    if (list.includes(word)) {
+      return true
+    }
+  }
+
+  return false
+}
+
 function lastNonSpaceChar(arr: string[], index: number): string {
   for (let i = index - 1; i >= 0; i -= 1) {
     if (arr[i].trim() !== "") {
@@ -110,21 +125,20 @@ function lastNonSpaceChar(arr: string[], index: number): string {
   return ""
 }
 
-function convertSentence(sentence: string): string {
+function convertSentence(sentence: string, style: string): string {
   const sentenceArray = sentenceToArray(sentence)
   const capitalizedSentenceArray = []
   const wordCount = sentenceArray.length
   for (let i = 0; i < wordCount; i += 1) {
-    if (
-      i === 0 ||
-      i === wordCount - 1 ||
-      !(
-        smallWords.includes(sentenceArray[i]) ||
-        articles.includes(sentenceArray[i]) ||
-        conjunctions.includes(sentenceArray[i]) ||
-        prepositions.includes(sentenceArray[i])
-      )
-    ) {
+    if (i === 0 || i === wordCount - 1) {
+      capitalizedSentenceArray[i] = capitalizeWord(sentenceArray[i])
+    } else if (sentenceArray[i - 1] === "-") {
+      if (capitalizeHyphens.includes(style)) {
+        capitalizedSentenceArray[i] = capitalizeWord(sentenceArray[i])
+      } else {
+        capitalizedSentenceArray[i] = sentenceArray[i]
+      }
+    } else if (!isException(sentenceArray[i])) {
       capitalizedSentenceArray[i] = capitalizeWord(sentenceArray[i])
     } else {
       capitalizedSentenceArray[i] = sentenceArray[i]
@@ -140,7 +154,7 @@ export default function toTitleCase(text: string, style: string): string {
   const convertedSentences = []
   const sentenceCount = sentences.length
   for (let i = 0; i < sentenceCount; i += 1) {
-    convertedSentences[i] = convertSentence(sentences[i])
+    convertedSentences[i] = convertSentence(sentences[i], style)
   }
   return convertedSentences.join("\n")
 }
