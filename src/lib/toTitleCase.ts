@@ -142,7 +142,6 @@ export default function toTitleCase(text: string, style: string): string {
   for (let i = 0; i < sentenceCount; i += 1) {
     convertedSentences[i] = convertSentence(sentences[i])
   }
-  //   console.log(style)
   return convertedSentences.join("\n")
 }
 

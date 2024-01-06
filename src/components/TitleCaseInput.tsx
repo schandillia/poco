@@ -60,8 +60,6 @@ function TitleCaseInput() {
     "Wikipedia: Manual of Style",
   ]
 
-  console.log(selectedStyle)
-
   return (
     <div className="mx-2 flex flex-row gap-3 md:mx-4 md:last:mb-6 lg:mx-auto lg:max-w-full xl:max-w-8xl">
       <div className="relative flex h-full flex-1 items-stretch md:flex-col">
@@ -94,9 +92,6 @@ function TitleCaseInput() {
             <TooltipProvider>
               <RadioGroup
                 value={selectedStyle}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  setSelectedStyle(event.target.value)
-                }
                 className="grid xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4"
               >
                 {styles.map((style, index) => (
@@ -105,6 +100,7 @@ function TitleCaseInput() {
                       <RadioGroupItem
                         value={style.toLowerCase()}
                         id={`style${index + 1}`}
+                        onClick={() => setSelectedStyle(style.toLowerCase())}
                       />
                       <TooltipTrigger asChild>
                         <Label htmlFor={`style${index + 1}`}>{style}</Label>
