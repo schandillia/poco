@@ -22,7 +22,6 @@ const smallWords = [
   "v.",
   "via",
 ]
-const punctuations = /([^\w\s])/g
 const prepositions = [
   "aboard",
   "about",
@@ -112,17 +111,20 @@ function isException(word: string): boolean {
       return true
     }
   }
-
   return false
 }
 
-function lastNonSpaceChar(arr: string[], index: number): string {
-  for (let i = index - 1; i >= 0; i -= 1) {
-    if (arr[i].trim() !== "") {
-      return arr[i]
+function isFirst(sentenceArray: string[], i: number): boolean {
+  const punctuation = [".", ",", "?", "!"]
+  for (let j = i - 1; j >= 0; j -= 1) {
+    if (!sentenceArray[j].match(/^\s*$/)) {
+      if (punctuation.includes(sentenceArray[j])) {
+        return true
+      }
+      return false
     }
   }
-  return ""
+  return false
 }
 
 function convertSentence(sentence: string, style: string): string {
@@ -130,7 +132,7 @@ function convertSentence(sentence: string, style: string): string {
   const capitalizedSentenceArray = []
   const wordCount = sentenceArray.length
   for (let i = 0; i < wordCount; i += 1) {
-    if (i === 0 || i === wordCount - 1) {
+    if (i === 0 || i === wordCount - 1 || isFirst(sentenceArray, i)) {
       capitalizedSentenceArray[i] = capitalizeWord(sentenceArray[i])
     } else if (sentenceArray[i - 1] === "-") {
       if (capitalizeHyphens.includes(style)) {
@@ -139,6 +141,21 @@ function convertSentence(sentence: string, style: string): string {
         capitalizedSentenceArray[i] = sentenceArray[i]
       }
     } else if (!isException(sentenceArray[i])) {
+      capitalizedSentenceArray[i] = capitalizeWord(sentenceArray[i])
+    } else if (
+      prepositions.includes(sentenceArray[i]) &&
+      sentenceArray[i].length > 4 &&
+      (style === "bluebook" ||
+        style === "chicago" ||
+        style === "mla" ||
+        style === "wikipedia")
+    ) {
+      capitalizedSentenceArray[i] = capitalizeWord(sentenceArray[i])
+    } else if (
+      prepositions.includes(sentenceArray[i]) &&
+      sentenceArray[i].length > 3 &&
+      (style === "ap" || style === "nyt")
+    ) {
       capitalizedSentenceArray[i] = capitalizeWord(sentenceArray[i])
     } else {
       capitalizedSentenceArray[i] = sentenceArray[i]

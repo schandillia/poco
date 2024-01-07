@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import { Copy } from "lucide-react"
 import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
+import { useToast } from "./ui/use-toast"
 import toTitleCase from "../lib/toTitleCase"
 
 import { Label } from "@/components/ui/label"
@@ -18,6 +19,8 @@ import {
 function TitleCaseInput() {
   const [value, setValue] = useState("")
   const [selectedStyle, setSelectedStyle] = useState("ama")
+
+  const { toast } = useToast()
 
   const textareaRef = useRef<HTMLTextAreaElement>(null) // Create a ref for the Textarea
 
@@ -36,7 +39,13 @@ function TitleCaseInput() {
   }
 
   const handleCopyClick = () => {
-    navigator.clipboard.writeText(value)
+    const regex = /\s+/g
+    navigator.clipboard.writeText(value.replace(regex, " ").trim())
+    setValue(value.replace(regex, " ").trim())
+    toast({
+      description: "Converted text coppied to clipboard.",
+      variant: "default",
+    })
   }
 
   const styles = [
@@ -83,12 +92,13 @@ function TitleCaseInput() {
               onClick={handleCopyClick}
             >
               <Copy
-                className={`text-green-600 ${value ? "" : "text-gray-400"}`}
+                className={`${
+                  value.trim() === "" ? "text-gray-400" : "text-green-600"
+                }`}
               />
             </Button>
           </div>
-          <h2 className="mb-3 mt-6 font-bold text-2xl">Style Guide</h2>
-          <div>
+          <div className="mt-8">
             <TooltipProvider>
               <RadioGroup
                 value={selectedStyle}
