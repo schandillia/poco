@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { Copy } from "lucide-react"
+import { Copy, Eraser, X } from "lucide-react"
 import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 import { useToast } from "./ui/use-toast"
@@ -48,6 +48,10 @@ function TitleCaseInput() {
     })
   }
 
+  const handleClearClick = () => {
+    setValue("")
+  }
+
   const styles = [
     "AMA",
     "AP",
@@ -82,9 +86,21 @@ function TitleCaseInput() {
               rows={1}
               maxRows={10}
               autoFocus
-              placeholder="Your unformatted title..."
+              placeholder="Just paste or start typing&#8230;"
               className="resize-none pr-12 text-base py-3 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
             />
+            <Button
+              className="absolute bottom-1.5 right-[60px]"
+              variant="ghost"
+              aria-label="clear"
+              onClick={handleClearClick}
+            >
+              <X
+                className={`${
+                  value.trim() === "" ? "text-gray-400" : "text-green-700"
+                }`}
+              />
+            </Button>
             <Button
               className="absolute bottom-1.5 right-[8px]"
               variant="ghost"
