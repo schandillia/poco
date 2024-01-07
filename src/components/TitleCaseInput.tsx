@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { Copy, Eraser, X } from "lucide-react"
+import { Copy, X } from "lucide-react"
 import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 import { useToast } from "./ui/use-toast"
