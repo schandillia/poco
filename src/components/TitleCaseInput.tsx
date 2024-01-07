@@ -2,7 +2,6 @@
 
 import { useState, useRef } from "react"
 import { Copy, X } from "lucide-react"
-import { text } from "stream/consumers"
 import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 import { useToast } from "./ui/use-toast"
