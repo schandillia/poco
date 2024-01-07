@@ -135,7 +135,7 @@ function TitleCaseInput() {
           </div>
           <p className="mt-2 text-gray-500 text-sm">{`Letters: ${
             textStats(value).characterCount
-          } · Words: ${textStats(value).wordCount} · Lines: ${
+          } • Words: ${textStats(value).wordCount} • Lines: ${
             textStats(value).lineCount
           }`}</p>
           <div className="mt-8">
