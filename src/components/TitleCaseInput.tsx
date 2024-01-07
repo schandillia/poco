@@ -93,7 +93,7 @@ function TitleCaseInput() {
             >
               <Copy
                 className={`${
-                  value.trim() === "" ? "text-gray-500" : "text-green-600"
+                  value.trim() === "" ? "text-gray-400" : "text-green-600"
                 }`}
               />
             </Button>
