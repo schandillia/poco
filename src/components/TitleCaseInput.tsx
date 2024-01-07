@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react"
 import { Copy, X } from "lucide-react"
+import { text } from "stream/consumers"
 import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 import { useToast } from "./ui/use-toast"
@@ -50,6 +51,25 @@ function TitleCaseInput() {
 
   const handleClearClick = () => {
     setValue("")
+  }
+
+  const textStats = (inputText: string) => {
+    if (inputText.trim() === "") {
+      return {
+        wordCount: 0,
+        characterCount: 0,
+        lineCount: 0,
+      }
+    }
+    const trimmedInputText = inputText.replace(/\s+/g, " ").trim()
+    const characterCount = trimmedInputText.length
+    const wordCount = trimmedInputText.split(" ").length
+    const lineCount = inputText.trim().split(/\r\n|\r|\n/).length
+    return {
+      wordCount,
+      characterCount,
+      lineCount,
+    }
   }
 
   const styles = [
@@ -114,6 +134,11 @@ function TitleCaseInput() {
               />
             </Button>
           </div>
+          <p className="mt-2 text-gray-500 text-sm">{`Letters: ${
+            textStats(value).characterCount
+          } · Words: ${textStats(value).wordCount} · Lines: ${
+            textStats(value).lineCount
+          }`}</p>
           <div className="mt-8">
             <TooltipProvider>
               <RadioGroup
