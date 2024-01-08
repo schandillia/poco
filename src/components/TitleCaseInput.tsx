@@ -39,11 +39,15 @@ function TitleCaseInput() {
   }
 
   const handleCopyClick = () => {
-    const regex = /\s+/g
-    navigator.clipboard.writeText(value.replace(regex, " ").trim())
-    setValue(value.replace(regex, " ").trim())
+    const lines = value.split(/\r?\n/)
+    const trimmedLines = lines.map((line) =>
+      line.replace(/[^\S\r\n]+/g, " ").trim(),
+    )
+    const newValue = trimmedLines.join("\n")
+    setValue(newValue)
+    navigator.clipboard.writeText(newValue)
     toast({
-      description: "Converted text coppied to clipboard.",
+      description: "Converted text copied to clipboard.",
       variant: "default",
     })
   }
@@ -133,7 +137,7 @@ function TitleCaseInput() {
               />
             </Button>
           </div>
-          <p className="mt-2 text-gray-500 text-sm">{`Letters: ${
+          <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">{`Letters: ${
             textStats(value).characterCount
           } • Words: ${textStats(value).wordCount} • Lines: ${
             textStats(value).lineCount
