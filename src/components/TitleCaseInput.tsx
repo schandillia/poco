@@ -22,7 +22,7 @@ function TitleCaseInput() {
 
   const { toast } = useToast()
 
-  const textareaRef = useRef<HTMLTextAreaElement>(null) // Create a ref for the Textarea
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleTextareaHover = () => {
     if (textareaRef.current && !textareaRef.current.disabled) {
