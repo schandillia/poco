@@ -1,27 +1,5 @@
 /* eslint-disable no-restricted-syntax */
 
-const smallWords = [
-  "a",
-  "an",
-  "and",
-  "as",
-  "at",
-  "but",
-  "by",
-  "en",
-  "for",
-  "if",
-  "in",
-  "nor",
-  "of",
-  "on",
-  "or",
-  "per",
-  "the",
-  "to",
-  "v.",
-  "via",
-]
 const prepositions = [
   "aboard",
   "about",
@@ -104,7 +82,7 @@ function capitalizeWord(word: string): string {
 }
 
 function isException(word: string): boolean {
-  const lists = [smallWords, articles, conjunctions, prepositions]
+  const lists = [articles, conjunctions, prepositions]
 
   for (const list of lists) {
     if (list.includes(word)) {
