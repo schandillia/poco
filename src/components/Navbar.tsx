@@ -23,7 +23,7 @@ const Navbar = async () => {
             <span>{process.env.BRAND}</span>
           </Link>
 
-          {/* add mobile navbar */}
+          {/* add mobile navbar here */}
 
           <div className="hidden items-center space-x-4 sm:flex">
             {!user ? (
