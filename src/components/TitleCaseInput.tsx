@@ -26,7 +26,7 @@ function TitleCaseInput() {
 
   const handleTextareaHover = () => {
     if (textareaRef.current && !textareaRef.current.disabled) {
-      textareaRef.current.focus() // Focus the Textarea on hover
+      textareaRef.current.focus()
     }
   }
 
