@@ -4,7 +4,7 @@ import Image from "next/image"
 import { buttonVariants } from "@/components/ui/button"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 
-export default function Home() {
+export default function Page() {
   /*
     Color values for grad1 and grad2 from/to attributes:
     pink: ff80b5

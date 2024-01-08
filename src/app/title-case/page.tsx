@@ -1,7 +1,6 @@
-// import { getUserSubscriptionPlan } from "@/lib/stripe"
 import TitleCaseInput from "@/components/TitleCaseInput"
 
-function Page() {
+export default function Page() {
   return (
     <main className="mx-auto max-w-7xl md:p-10">
       <div className="mt-8 flex flex-col items-start justify-between gap-4 border-b border-gray-300 dark:border-gray-500 pb-5 sm:flex-row sm:items-center sm:gap-0">
@@ -13,5 +12,3 @@ function Page() {
     </main>
   )
 }
-
-export default Page
