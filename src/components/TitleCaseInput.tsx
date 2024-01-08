@@ -39,7 +39,6 @@ function TitleCaseInput() {
   }
 
   const handleCopyClick = () => {
-    // Loop through each line removing excess whitespace characters
     const lines = value.split(/\r?\n/)
     const trimmedLines = lines.map((line) =>
       line.replace(/[^\S\r\n]+/g, " ").trim(),
