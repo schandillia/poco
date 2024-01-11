@@ -2,7 +2,7 @@
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { createUploadthing, type FileRouter } from "uploadthing/next"
-import { db } from "@/db"
+import { db } from "@/DELETE-db"
 
 const f = createUploadthing()
 

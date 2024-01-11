@@ -2,7 +2,7 @@ import { notFound, redirect } from "next/navigation"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import PdfRenderer from "@/components/PdfRenderer"
 import ChatWrapper from "@/components/chat/ChatWrapper"
-import { db } from "@/db"
+import { db } from "@/DELETE-db"
 
 interface PageProps {
   params: {

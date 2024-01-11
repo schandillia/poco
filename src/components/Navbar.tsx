@@ -9,6 +9,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper"
 import { buttonVariants } from "./ui/button"
 import UserAccountNav from "./UserAccountNav"
 import ThemeToggle from "./ThemeToggle"
+import LoginButton from "./auth/LoginButton"
 // import MobileNav from "./MobileNav"
 
 const Navbar = async () => {
@@ -70,6 +71,9 @@ const Navbar = async () => {
                 >
                   Get started <ArrowRight className="ml-1.5 h-5 w-5" />
                 </RegisterLink>
+
+                {/* Native authentication */}
+                <LoginButton>Login</LoginButton>
               </>
             ) : (
               <>

@@ -2,7 +2,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { TRPCError } from "@trpc/server"
 import { z } from "zod"
 import { privateProcedure, publicProcedure, router } from "./trpc"
-import { db } from "@/db"
+import { db } from "@/DELETE-db"
 // import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query"
 // import { absoluteUrl } from "@/lib/utils"
 // import {
