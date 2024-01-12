@@ -1,16 +1,20 @@
 import Link from "next/link"
+import {
+  LoginLink,
+  RegisterLink,
+  getKindeServerSession,
+} from "@kinde-oss/kinde-auth-nextjs/server"
 import { ArrowRight } from "lucide-react"
 import MaxWidthWrapper from "./MaxWidthWrapper"
 import { Button, buttonVariants } from "./ui/button"
 import UserAccountNav from "./UserAccountNav"
 import ThemeToggle from "./ThemeToggle"
 import LoginButton from "./auth/LoginButton"
-import { auth } from "@/auth"
 // import MobileNav from "./MobileNav"
 
 const Navbar = async () => {
-  const session = await auth()
-  const user = session?.user
+  const { getUser } = getKindeServerSession()
+  const user = await getUser()
 
   return (
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full backdrop-blur-lg transition-all">
@@ -52,6 +56,21 @@ const Navbar = async () => {
                 >
                   Pricing
                 </Link>
+                <LoginLink
+                  className={buttonVariants({
+                    variant: "link",
+                    size: "sm",
+                  })}
+                >
+                  Sign in
+                </LoginLink>
+                <RegisterLink
+                  className={buttonVariants({
+                    size: "sm",
+                  })}
+                >
+                  Get started <ArrowRight className="ml-1.5 h-5 w-5" />
+                </RegisterLink>
 
                 {/* Native authentication */}
                 <LoginButton asChild>
@@ -91,9 +110,13 @@ const Navbar = async () => {
                 </Link>
 
                 <UserAccountNav
-                  name={!user.name ? "Your Account" : `${user.name}`}
+                  name={
+                    !user.given_name || !user.family_name
+                      ? "Your Account"
+                      : `${user.given_name} ${user.family_name}`
+                  }
                   email={user.email ?? ""}
-                  imageUrl={user.image ?? ""}
+                  imageUrl={user.picture ?? ""}
                 />
               </>
             )}

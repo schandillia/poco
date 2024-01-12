@@ -4,7 +4,9 @@
 
 import { useRouter } from "next/navigation"
 import { ArrowRight } from "lucide-react"
-import { Button, buttonVariants } from "../ui/button"
+import LoginForm from "@/components/auth/LoginForm"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 interface LoginButtonProps {
   children: React.ReactNode
@@ -18,19 +20,33 @@ export default function LoginButton({
   asChild,
 }: LoginButtonProps) {
   const router = useRouter()
-  const onClick = () => {
+  const onClick = (event: any) => {
+    event.preventDefault()
     router.push("/auth/login")
   }
 
-  if (mode === "modal") return <span>TODO: Implement Modal</span>
+  if (mode === "modal")
+    return (
+      <Dialog>
+        <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
+        <DialogContent className="p-0 w-auto bg-transparent border-none">
+          <LoginForm />
+        </DialogContent>
+      </Dialog>
+    )
   return (
-    <Button
+    <span
       onClick={onClick}
-      className={buttonVariants({
-        size: "sm",
-      })}
+      tabIndex={0}
+      aria-label="Login"
+      role="button"
+      onKeyDown={(event) => {
+        if (event.key === "Enter") {
+          onClick(event)
+        }
+      }}
     >
-      {children} <ArrowRight className="ml-1.5 h-5 w-5" />
-    </Button>
+      {children}
+    </span>
   )
 }

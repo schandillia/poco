@@ -3,7 +3,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Gem } from "lucide-react"
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server"
+import SignoutButton from "@/components/auth/SignoutButton"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -66,7 +67,7 @@ const UserAccountNav = async ({
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer">
-          <LogoutLink>Log out</LogoutLink>
+          <SignoutButton />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
