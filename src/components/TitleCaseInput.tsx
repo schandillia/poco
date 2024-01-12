@@ -2,10 +2,10 @@
 
 import { useState, useRef } from "react"
 import { Copy, X } from "lucide-react"
-import { Button } from "./ui/button"
-import { Textarea } from "./ui/textarea"
-import { useToast } from "./ui/use-toast"
-import toTitleCase from "../lib/toTitleCase"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/components/ui/use-toast"
+import toTitleCase from "@/lib/to-title-case"
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"

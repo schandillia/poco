@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Gem } from "lucide-react"
 import SignoutButton from "@/components/auth/SignoutButton"
+import initials from "@/lib/initials"
 
 import {
   DropdownMenu,
@@ -13,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
 import { Button } from "./ui/button"
-import { Avatar, AvatarFallback } from "./ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Icons } from "./Icons"
 
 interface UserAccountNavProps {
@@ -26,6 +27,7 @@ const UserAccountNav = async ({
   imageUrl,
   name,
 }: UserAccountNavProps) => {
+  const displayName = name ? initials(name) : null
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
@@ -43,7 +45,12 @@ const UserAccountNav = async ({
             ) : (
               <AvatarFallback>
                 <span className="sr-only">{name}</span>
-                <Icons.user className="h-4 w-4 text-green-600" />
+                {displayName && (
+                  <span className="text-green-600">{displayName}</span>
+                )}
+                {!displayName && (
+                  <Icons.user className="h-4 w-4 text-green-600" />
+                )}
               </AvatarFallback>
             )}
           </Avatar>
