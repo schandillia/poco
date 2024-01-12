@@ -66,7 +66,7 @@ export default function RegisterForm() {
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="john.doe@email.com"
+                      placeholder="your@email.com"
                       type="email"
                     />
                   </FormControl>
@@ -80,6 +80,24 @@ export default function RegisterForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      placeholder="********"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
