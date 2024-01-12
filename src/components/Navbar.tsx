@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { LogIn } from "lucide-react"
 import MaxWidthWrapper from "./MaxWidthWrapper"
 import { Button, buttonVariants } from "./ui/button"
 import UserAccountNav from "./UserAccountNav"
@@ -56,7 +56,7 @@ const Navbar = async () => {
                 {/* Native authentication */}
                 <LoginButton asChild>
                   <Button className={buttonVariants({ size: "sm" })}>
-                    Login <ArrowRight className="ml-1.5 h-5 w-5" />
+                    Login <LogIn className="ml-1.5 h-5 w-5" />
                   </Button>
                 </LoginButton>
               </>
@@ -91,7 +91,7 @@ const Navbar = async () => {
                 </Link>
 
                 <UserAccountNav
-                  name={!user.name ? "Your Account" : `${user.name}`}
+                  name={!user.name ? `${user.email}` : `${user.name}`}
                   email={user.email ?? ""}
                   imageUrl={user.image ?? ""}
                 />
