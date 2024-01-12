@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useState, useTransition } from "react"
+import { Eye, EyeOff } from "lucide-react"
 import CardWrapper from "@/components/auth/CardWrapper"
 import { RegisterSchema } from "@/schemas"
 import { Input } from "@/components/ui/input"
@@ -22,6 +23,7 @@ import FormSuccess from "@/components/FormSuccess"
 import register from "@/app/actions/register"
 
 export default function RegisterForm() {
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | undefined>("")
   const [success, setSuccess] = useState<string | undefined>("")
   const [isPending, startTransition] = useTransition()
@@ -81,12 +83,21 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="********"
-                      type="password"
-                    />
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="********"
+                        type={showPassword ? "text" : "password"}
+                      />
+                      <div className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400">
+                        {showPassword ? (
+                          <Eye onClick={() => setShowPassword(false)} />
+                        ) : (
+                          <EyeOff onClick={() => setShowPassword(true)} />
+                        )}
+                      </div>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -99,12 +110,21 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="********"
-                      type="password"
-                    />
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="********"
+                        type={showPassword ? "text" : "password"}
+                      />
+                      <div className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400">
+                        {showPassword ? (
+                          <Eye onClick={() => setShowPassword(false)} />
+                        ) : (
+                          <EyeOff onClick={() => setShowPassword(true)} />
+                        )}
+                      </div>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
