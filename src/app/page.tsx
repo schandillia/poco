@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { MdKeyboardArrowRight } from "react-icons/md"
 import Image from "next/image"
 import { buttonVariants } from "@/components/ui/button"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
@@ -45,7 +45,7 @@ export default function Page() {
           })}
           href="/dashboard"
         >
-          Get started <ArrowRight className="ml-2 h-5 w-5" />
+          Get started <MdKeyboardArrowRight className="ml-2 h-5 w-5" />
         </Link>
       </MaxWidthWrapper>
 

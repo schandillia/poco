@@ -2,7 +2,8 @@
 
 "use client"
 
-import { Ghost, Loader, MessageSquare, Plus, Trash } from "lucide-react"
+import { Ghost, MessageSquare, Plus, Trash } from "lucide-react"
+import { LuLoader } from "react-icons/lu"
 import Skeleton from "react-loading-skeleton"
 import Link from "next/link"
 import { format } from "date-fns"
@@ -51,11 +52,11 @@ function Dashboard() {
         <ul className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {files
             .sort(
-              (a, b) =>
+              (a: any, b: any) =>
                 new Date(b.createdAt).getTime() -
                 new Date(a.createdAt).getTime(),
             )
-            .map((file) => (
+            .map((file: any) => (
               <li
                 key={file.id}
                 className="col-span-1 divide-y rounded-lg dark:bg-zinc-900 shadow transition hover:shadow-lg border border-gray-200 dark:border-gray-800"
@@ -93,7 +94,7 @@ function Dashboard() {
                     variant="destructiveLight"
                   >
                     {currentlyDeletingFile === file.id ? (
-                      <Loader className="h-4 w-4 animate-spin" />
+                      <LuLoader className="h-4 w-4 animate-spin" />
                     ) : (
                       <Trash className="h-4 w-4" />
                     )}

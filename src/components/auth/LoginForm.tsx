@@ -6,6 +6,7 @@ import * as z from "zod"
 import { useState, useTransition } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
+import { Eye, EyeOff } from "lucide-react"
 import CardWrapper from "@/components/auth/CardWrapper"
 import { LoginSchema } from "@/schemas"
 import { Input } from "@/components/ui/input"
@@ -32,6 +33,7 @@ export default function LoginForm() {
       ? "Email already in use with another provider"
       : ""
 
+  const [showPassword, setShowPassword] = useState(false)
   const [showTwoFactor, setShowTwoFactor] = useState(false)
   const [error, setError] = useState<string | undefined>("")
   const [success, setSuccess] = useState<string | undefined>("")
@@ -124,12 +126,21 @@ export default function LoginForm() {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="********"
-                          type="password"
-                        />
+                        <div className="relative">
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="********"
+                            type={showPassword ? "text" : "password"}
+                          />
+                          <div className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400">
+                            {showPassword ? (
+                              <Eye onClick={() => setShowPassword(false)} />
+                            ) : (
+                              <EyeOff onClick={() => setShowPassword(true)} />
+                            )}
+                          </div>
+                        </div>
                       </FormControl>
                       <Button
                         variant="link"

@@ -63,7 +63,7 @@ const Navbar = async () => {
             ) : (
               <>
                 <Link
-                  href="/titleCase"
+                  href="/title-case"
                   className={buttonVariants({
                     variant: "link",
                     size: "sm",
