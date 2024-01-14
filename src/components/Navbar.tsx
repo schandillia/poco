@@ -35,13 +35,22 @@ const Navbar = async () => {
                   Title Case
                 </Link>
                 <Link
-                  href="/dashboard"
+                  href="/citation"
                   className={buttonVariants({
                     variant: "link",
                     size: "sm",
                   })}
                 >
                   Citation
+                </Link>
+                <Link
+                  href="/research"
+                  className={buttonVariants({
+                    variant: "link",
+                    size: "sm",
+                  })}
+                >
+                  Research
                 </Link>
                 <Link
                   href="/pricing"
@@ -72,13 +81,22 @@ const Navbar = async () => {
                   Title Case
                 </Link>
                 <Link
-                  href="/dashboard"
+                  href="/citation"
                   className={buttonVariants({
                     variant: "link",
                     size: "sm",
                   })}
                 >
                   Citation
+                </Link>
+                <Link
+                  href="/research"
+                  className={buttonVariants({
+                    variant: "link",
+                    size: "sm",
+                  })}
+                >
+                  Research
                 </Link>
                 <Link
                   href="/dashboard"
