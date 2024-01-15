@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 "use client"
 
-import React, { useCallback, useState } from "react"
+import React from "react"
 import { Upload, BookOpenText } from "lucide-react"
 import Dropzone from "react-dropzone"
 import { BsFileEarmarkPdfFill } from "react-icons/bs"
@@ -21,7 +19,7 @@ function PaperSection({ onFileDrop }: PaperSectionProps) {
         <div className="flex flex-col h-screen max-h-[calc(100vh-6.7rem)] items-center justify-center">
           {/* Load by drag and drop */}
           <Dropzone onDrop={(acceptedFiles) => onFileDrop(acceptedFiles[0])}>
-            {({ getRootProps, getInputProps, acceptedFiles }) => (
+            {({ getRootProps }) => (
               <div
                 {...getRootProps()}
                 className="cursor-pointer border border-dashed border-gray-300 dark:border-gray-500 bg-gray-50 dark:bg-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-900 rounded-md p-20"

@@ -34,11 +34,11 @@ import PaperFocus from "@/components/research/PaperFocus"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
-interface PdfRendererProps {
+interface PaperViewerProps {
   file: any
 }
 
-function PdfRenderer({ file }: PdfRendererProps) {
+function PaperViewer({ file }: PaperViewerProps) {
   const { toast } = useToast()
 
   const [numPages, setNumPages] = useState<number>()
@@ -243,4 +243,4 @@ function PdfRenderer({ file }: PdfRendererProps) {
   )
 }
 
-export default PdfRenderer
+export default PaperViewer
