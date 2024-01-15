@@ -10,6 +10,7 @@ import axios from "axios"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/components/ui/use-toast"
 
 interface PaperSectionProps {
   onFileDrop: (arg0: any) => void
@@ -27,6 +28,8 @@ function PaperSection({
   onFileDrop: (file: File) => void
   setFile: (file: File | null) => void
 }) {
+  const { toast } = useToast()
+
   async function handleSubmit(event: any) {
     event.preventDefault() // Prevent default form submission
     const paperLink = event.target.elements.paperLink.value
@@ -43,24 +46,31 @@ function PaperSection({
         const downloadedFile = new File([response.data], filename)
         setFile(downloadedFile)
 
-        console.log("File downloaded:", downloadedFile.arrayBuffer()) // Access file properties: file.name, file.arrayBuffer(), file.size
-
         // Do something with the downloaded file (e.g., display, save, process)
-      } catch (error) {
-        console.error("Error downloading file:", error)
-
+      } catch (error: any) {
         // Provide informative error messages based on the cause
-        if (!response.headers["Content-Disposition"]) {
-          console.error("Missing content-disposition header in the response.")
-        } else if (error.response && error.response.status === 404) {
-          console.error("File not found at the specified URL.")
-        } else if (error.response && error.response.status === 403) {
-          console.error("Access to the file is forbidden.")
-        } else {
-          console.error("Generic download error:", error)
+        if (error.response && error.response.status === 404) {
+          return toast({
+            title: "File not found",
+            description: "The link you entered did not return a document.",
+            variant: "destructive",
+          })
         }
+        if (error.response && error.response.status === 403) {
+          return toast({
+            title: "Access denied",
+            description: "You do not have access to the requested document.",
+            variant: "destructive",
+          })
+        }
+        return toast({
+          title: "Something went wrong",
+          description: "Please try again later..",
+          variant: "destructive",
+        })
       }
     }
+    return undefined
   }
 
   return (
