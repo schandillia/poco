@@ -169,17 +169,19 @@ function PdfRenderer({ file }: PdfRendererProps) {
         </div>
 
         <div className="flex gap-0">
+          {/* Rotate paper counterclockwise */}
           <Button
             onClick={() => setRotation((prev) => normalizeRotation(prev - 90))}
             variant="ghost"
-            aria-label="rotate 90 degrees"
+            aria-label="rotate 90 degrees counterclockwise"
           >
             <RotateCcw className="h-4 w-4" />
           </Button>
+          {/* Rotate paper clockwise */}
           <Button
             onClick={() => setRotation((prev) => normalizeRotation(prev + 90))}
             variant="ghost"
-            aria-label="rotate 90 degrees"
+            aria-label="rotate 90 degrees clockwise"
           >
             <RotateCw className="h-4 w-4" />
           </Button>
