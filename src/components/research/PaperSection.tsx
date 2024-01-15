@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { Upload, BookOpenText } from "lucide-react"
 import Dropzone from "react-dropzone"
 import { BsFileEarmarkPdfFill } from "react-icons/bs"
+import axios from "axios"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -12,7 +15,54 @@ interface PaperSectionProps {
   onFileDrop: (arg0: any) => void
 }
 
-function PaperSection({ onFileDrop }: PaperSectionProps) {
+function isPdfUrl(url: string) {
+  const regex = /^https?:\/\/.*\.pdf$/i
+  return regex.test(url)
+}
+
+function PaperSection({
+  onFileDrop,
+  setFile,
+}: {
+  onFileDrop: (file: File) => void
+  setFile: (file: File | null) => void
+}) {
+  async function handleSubmit(event: any) {
+    event.preventDefault() // Prevent default form submission
+    const paperLink = event.target.elements.paperLink.value
+    // if isPdfUrl is true, then download the file and assign it to a file object
+    if (isPdfUrl(paperLink)) {
+      try {
+        const response = await axios.get(paperLink, { responseType: "blob" })
+
+        // Handle potential missing content-disposition header
+        const filename =
+          response.headers["Content-Disposition"]?.split("filename=")[1] ??
+          "paper.pdf"
+
+        const downloadedFile = new File([response.data], filename)
+        setFile(downloadedFile)
+
+        console.log("File downloaded:", downloadedFile.arrayBuffer()) // Access file properties: file.name, file.arrayBuffer(), file.size
+
+        // Do something with the downloaded file (e.g., display, save, process)
+      } catch (error) {
+        console.error("Error downloading file:", error)
+
+        // Provide informative error messages based on the cause
+        if (!response.headers["Content-Disposition"]) {
+          console.error("Missing content-disposition header in the response.")
+        } else if (error.response && error.response.status === 404) {
+          console.error("File not found at the specified URL.")
+        } else if (error.response && error.response.status === 403) {
+          console.error("Access to the file is forbidden.")
+        } else {
+          console.error("Generic download error:", error)
+        }
+      }
+    }
+  }
+
   return (
     <div className="w-full rounded-md shadow flex flex-col items-center">
       <div className="w-full max-h-screen border-2 rounded-md">
@@ -51,10 +101,14 @@ function PaperSection({ onFileDrop }: PaperSectionProps) {
             <p className="text-gray-600 dark:text-gray-400 mb-4 mt-4">OR</p>
             <Separator className="mb-0.5 ml-2 dark:bg-gray-400" />
           </div>
-          <div className="relative w-1/2 flex items-center">
+          <form
+            className="relative w-1/2 flex items-center"
+            onSubmit={handleSubmit}
+          >
             <Input
               placeholder="Paste link to a paper"
               className="h-15 pr-12 text-base py-3"
+              name="paperLink"
             />
             <Button
               size="sm"
@@ -63,7 +117,10 @@ function PaperSection({ onFileDrop }: PaperSectionProps) {
             >
               <BookOpenText className="h-4 w-4" />
             </Button>
-          </div>
+          </form>
+          <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">
+            *Link must end in <span className="font-semibold">.pdf</span>
+          </p>
         </div>
       </div>
     </div>

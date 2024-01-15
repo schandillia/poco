@@ -10,6 +10,7 @@ import {
   RotateCcw,
   ZoomIn,
   ZoomOut,
+  UploadCloud,
 } from "lucide-react"
 import { Document, Page, pdfjs } from "react-pdf"
 
@@ -169,6 +170,16 @@ function PaperViewer({ file }: PaperViewerProps) {
         </div>
 
         <div className="flex gap-0">
+          {/* Upload paper  */}
+          <Button
+            disabled
+            onClick={() => {}}
+            variant="ghost"
+            aria-label="Upload paper to cloud"
+          >
+            <UploadCloud className="h-4 w-4" />
+          </Button>
+
           {/* Rotate paper counterclockwise */}
           <Button
             onClick={() => setRotation((prev) => normalizeRotation(prev - 90))}
