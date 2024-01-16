@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { Copy, X } from "lucide-react"
+import { Icons } from "@/components/Icons"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
@@ -118,7 +118,7 @@ function TitleCaseInput() {
               aria-label="clear"
               onClick={handleClearClick}
             >
-              <X
+              <Icons.X
                 className={`${
                   value.trim() === "" ? "text-gray-400" : "text-green-700"
                 }`}
@@ -130,7 +130,7 @@ function TitleCaseInput() {
               aria-label="convert"
               onClick={handleCopyClick}
             >
-              <Copy
+              <Icons.Copy
                 className={`${
                   value.trim() === "" ? "text-gray-400" : "text-green-700"
                 }`}

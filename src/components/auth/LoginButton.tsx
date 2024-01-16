@@ -3,9 +3,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ArrowRight } from "lucide-react"
 import LoginForm from "@/components/auth/LoginForm"
-import { Button, buttonVariants } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 interface LoginButtonProps {

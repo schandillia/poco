@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow, react/no-array-index-key */
 
 import React, { useState, useCallback } from "react"
-import { Expand, Loader } from "lucide-react"
 import SimpleBar from "simplebar-react"
 import { Document, Page } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
@@ -10,13 +9,13 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
+import { Icons } from "@/components/Icons"
 
 interface PdfFullscreenProps {
   file: any
 }
 
 function PdfFullscreen({ file }: PdfFullscreenProps) {
-  const [isOpen, setIsOpen] = useState(false)
   const [numPages, setNumPages] = useState<number>()
 
   const { toast } = useToast()
@@ -33,7 +32,7 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
         className="gap-1.5"
         aria-label="fullscreen"
       >
-        <Expand className="h-4 w-4" />
+        <Icons.Fullscreen className="h-4 w-4" />
       </Button>
       <FullScreen handle={handle}>
         {handle.active ? (
@@ -42,7 +41,7 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
               <Document
                 loading={
                   <div className="flex justify-center">
-                    <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                    <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                   </div>
                 }
                 onLoadError={() => {
@@ -63,7 +62,7 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
                     pageNumber={i + 1}
                     loading={
                       <div className="flex justify-center">
-                        <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                        <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                       </div>
                     }
                   />

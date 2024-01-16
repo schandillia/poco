@@ -3,11 +3,11 @@
 "use client"
 
 import { Ghost, MessageSquare, Plus, Trash } from "lucide-react"
-import { LuLoader } from "react-icons/lu"
 import Skeleton from "react-loading-skeleton"
 import Link from "next/link"
 import { format } from "date-fns"
 import { useState } from "react"
+import { Icons } from "@/components/Icons"
 import { Button } from "./ui/button"
 import UploadButton from "./UploadButton"
 import { trpc } from "@/app/_trpc/client"
@@ -94,7 +94,7 @@ function Dashboard() {
                     variant="destructiveLight"
                   >
                     {currentlyDeletingFile === file.id ? (
-                      <LuLoader className="h-4 w-4 animate-spin" />
+                      <Icons.Loader className="h-4 w-4 animate-spin" />
                     ) : (
                       <Trash className="h-4 w-4" />
                     )}

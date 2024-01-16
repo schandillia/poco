@@ -1,12 +1,12 @@
 "use client"
 
-import { Loader } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 import newVerification from "@/app/actions/new-verification"
 import CardWrapper from "@/components/auth/CardWrapper"
 import FormError from "@/components/FormError"
 import FormSuccess from "@/components/FormSuccess"
+import { Icons } from "@/components/Icons"
 
 function NewVerificationForm() {
   const [error, setError] = useState<string | undefined>()
@@ -42,7 +42,7 @@ function NewVerificationForm() {
     >
       <div className="flex items-center justify-center w-full">
         {!success && !error && (
-          <Loader className="h-6 w-6 text-green-600 animate-spin" />
+          <Icons.Loader className="h-6 w-6 text-green-600 animate-spin" />
         )}
         <FormSuccess message={success} />
         <FormError message={error} />

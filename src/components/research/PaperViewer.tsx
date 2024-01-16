@@ -1,20 +1,6 @@
 /* eslint-disable @typescript-eslint/no-shadow, react/jsx-props-no-spreading, @typescript-eslint/no-unused-vars */
 
-"use client"
-
-import {
-  ChevronLeft,
-  ChevronRight,
-  Loader,
-  RotateCw,
-  RotateCcw,
-  ZoomIn,
-  ZoomOut,
-  UploadCloud,
-} from "lucide-react"
-import { MdOutlineCloudUpload } from "react-icons/md"
 import { Document, Page, pdfjs } from "react-pdf"
-
 import "react-pdf/dist/Page/AnnotationLayer.css"
 import "react-pdf/dist/Page/TextLayer.css"
 import { useResizeDetector } from "react-resize-detector"
@@ -30,6 +16,7 @@ import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import PaperFullscreen from "@/components/research/PaperFullscreen"
 import PaperFocus from "@/components/research/PaperFocus"
+import { Icons } from "@/components/Icons"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
@@ -99,7 +86,7 @@ function PaperViewer({ file }: PaperViewerProps) {
             variant="ghost"
             aria-label="previous page"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <Icons.Left className="h-4 w-4" />
           </Button>
 
           <div className="flex items-center gap-1.5">
@@ -133,7 +120,7 @@ function PaperViewer({ file }: PaperViewerProps) {
             variant="ghost"
             aria-label="next page"
           >
-            <ChevronRight className="h-4 w-4" />
+            <Icons.Right className="h-4 w-4" />
           </Button>
         </div>
 
@@ -147,7 +134,7 @@ function PaperViewer({ file }: PaperViewerProps) {
               setScale(scale - 0.25)
             }}
           >
-            <ZoomOut className="h-4 w-4" />
+            <Icons.ZoomOut className="h-4 w-4" />
           </Button>
           <span className="text-sm text-gray-600 dark:text-gray-400">
             {scale * 100}%
@@ -160,7 +147,7 @@ function PaperViewer({ file }: PaperViewerProps) {
               setScale(scale + 0.25)
             }}
           >
-            <ZoomIn className="h-4 w-4" />
+            <Icons.ZoomIn className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
@@ -184,7 +171,7 @@ function PaperViewer({ file }: PaperViewerProps) {
               variant="ghost"
               aria-label="Upload paper to cloud"
             >
-              <MdOutlineCloudUpload className="h-4 w-4" />
+              <Icons.UploadToCloud className="h-4 w-4" />
             </Button>
           )}
 
@@ -195,7 +182,7 @@ function PaperViewer({ file }: PaperViewerProps) {
             variant="ghost"
             aria-label="rotate 90 degrees counterclockwise"
           >
-            <RotateCcw className="h-4 w-4" />
+            <Icons.RotateLeft className="h-4 w-4" />
           </Button>
           {/* Rotate paper clockwise */}
           <Button
@@ -204,7 +191,7 @@ function PaperViewer({ file }: PaperViewerProps) {
             variant="ghost"
             aria-label="rotate 90 degrees clockwise"
           >
-            <RotateCw className="h-4 w-4" />
+            <Icons.RotateRight className="h-4 w-4" />
           </Button>
 
           <PaperFocus file={file} />
@@ -218,7 +205,7 @@ function PaperViewer({ file }: PaperViewerProps) {
             <Document
               loading={
                 <div className="flex justify-center">
-                  <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                  <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                 </div>
               }
               onLoadError={() => {
@@ -251,7 +238,7 @@ function PaperViewer({ file }: PaperViewerProps) {
                 key={`@${scale}`}
                 loading={
                   <div className="flex justify-center">
-                    <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                    <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                   </div>
                 }
                 onRenderSuccess={() => setRenderedScale(scale)}

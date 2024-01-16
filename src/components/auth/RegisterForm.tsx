@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useState, useTransition } from "react"
-import { Eye, EyeOff } from "lucide-react"
+import { Icons } from "@/components/Icons"
 import CardWrapper from "@/components/auth/CardWrapper"
 import { RegisterSchema } from "@/schemas"
 import { Input } from "@/components/ui/input"
@@ -92,9 +92,9 @@ export default function RegisterForm() {
                       />
                       <div className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400">
                         {showPassword ? (
-                          <Eye onClick={() => setShowPassword(false)} />
+                          <Icons.Show onClick={() => setShowPassword(false)} />
                         ) : (
-                          <EyeOff onClick={() => setShowPassword(true)} />
+                          <Icons.Hide onClick={() => setShowPassword(true)} />
                         )}
                       </div>
                     </div>
@@ -119,9 +119,9 @@ export default function RegisterForm() {
                       />
                       <div className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400">
                         {showPassword ? (
-                          <Eye onClick={() => setShowPassword(false)} />
+                          <Icons.Show onClick={() => setShowPassword(false)} />
                         ) : (
-                          <EyeOff onClick={() => setShowPassword(true)} />
+                          <Icons.Hide onClick={() => setShowPassword(true)} />
                         )}
                       </div>
                     </div>

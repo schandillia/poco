@@ -12,7 +12,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
 }
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-  const resetLink = `${process.env.REACT_APP_URL}/auth/new-password?token=${token}`
+  const resetLink = `${process.env.APP_URL}/auth/new-password?token=${token}`
 
   await resend.emails.send({
     from: process.env.VERIFICATION_SENDER as string,
@@ -23,7 +23,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 }
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${process.env.REACT_APP_URL}/auth/new-verification?token=${token}`
+  const confirmLink = `${process.env.APP_URL}/auth/new-verification?token=${token}`
 
   await resend.emails.send({
     from: process.env.VERIFICATION_SENDER as string,

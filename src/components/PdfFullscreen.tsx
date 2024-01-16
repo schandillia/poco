@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow, react/no-array-index-key */
 
-import React, { useState, useCallback } from "react"
-import { Expand, Loader } from "lucide-react"
+import React, { useState } from "react"
 import SimpleBar from "simplebar-react"
 import { Document, Page } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
-
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
+import { Icons } from "@/components/Icons"
 import { useToast } from "./ui/use-toast"
 import { Button } from "./ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 
 interface PdfFullscreenProps {
   fileUrl: string
@@ -33,7 +31,7 @@ function PdfFullscreen({ fileUrl }: PdfFullscreenProps) {
         className="gap-1.5"
         aria-label="fullscreen"
       >
-        <Expand className="h-4 w-4" />
+        <Icons.Fullscreen className="h-4 w-4" />
       </Button>
       <FullScreen handle={handle}>
         {handle.active ? (
@@ -42,7 +40,7 @@ function PdfFullscreen({ fileUrl }: PdfFullscreenProps) {
               <Document
                 loading={
                   <div className="flex justify-center">
-                    <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                    <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                   </div>
                 }
                 onLoadError={() => {

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-shadow, react/no-array-index-key */
 
 import { useState } from "react"
-import { Focus, Loader } from "lucide-react"
 import SimpleBar from "simplebar-react"
 import { Document, Page } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
+import { Icons } from "@/components/Icons"
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
@@ -32,7 +32,7 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
     >
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
         <Button variant="ghost" className="gap-1.5" aria-label="fullscreen">
-          <Focus className="h-4 w-4" />
+          <Icons.Focus className="h-4 w-4" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-7xl w-full">
@@ -41,7 +41,7 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
             <Document
               loading={
                 <div className="flex justify-center">
-                  <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                  <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                 </div>
               }
               onLoadError={() => {
@@ -62,7 +62,7 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
                   pageNumber={i + 1}
                   loading={
                     <div className="flex justify-center">
-                      <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                      <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                     </div>
                   }
                 />

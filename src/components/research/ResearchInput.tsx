@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, react/require-default-props */
 
-import { Send } from "lucide-react"
-import { useContext, useRef } from "react"
 import { Button } from "../ui/button"
 import { Textarea } from "../ui/textarea"
+import { Icons } from "@/components/Icons"
 
 function ResearchInput() {
   return (
@@ -23,7 +22,7 @@ function ResearchInput() {
                 className="absolute bottom-1.5 right-[8px]"
                 aria-label="send message"
               >
-                <Send className="h-4 w-4" />
+                <Icons.Send className="h-4 w-4" />
               </Button>
             </div>
           </div>

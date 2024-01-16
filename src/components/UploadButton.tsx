@@ -4,8 +4,9 @@
 
 import { useState } from "react"
 import Dropzone from "react-dropzone"
-import { FileUp, File, Loader } from "lucide-react"
+import { FileUp, File } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { Icons } from "@/components/Icons"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 import { Button } from "./ui/button"
 
@@ -124,7 +125,7 @@ function UploadDropzone() {
                   />
                   {uploadProgress === 100 ? (
                     <div className="flex gap-1 items-center justify-center text-sm text-gray-600 dark:text-gray-400 text-center pt-2">
-                      <Loader className="h-3 w-3 text-green-600 animate-spin" />
+                      <Icons.Loader className="h-3 w-3 text-green-600 animate-spin" />
                       Redirecting...
                     </div>
                   ) : null}

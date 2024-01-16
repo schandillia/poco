@@ -3,10 +3,9 @@
 "use client"
 
 import React from "react"
-import { Upload, BookOpenText } from "lucide-react"
 import Dropzone from "react-dropzone"
-import { BsFileEarmarkPdfFill } from "react-icons/bs"
 import axios from "axios"
+import { Icons } from "@/components/Icons"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -86,13 +85,13 @@ function PaperSection({
                     className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer"
                   >
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Upload className="h-6 w-6 text-gray-600 dark:text-gray-400 mb-2" />
+                      <Icons.Upload className="h-6 w-6 text-gray-600 dark:text-gray-400 mb-2" />
                       <p className="mb-2 text-md text-gray-600 dark:text-gray-400">
                         Drag a file here or{" "}
                         <span className="font-semibold">click to upload</span>
                       </p>
                       <p className="flex flex-row text-sm text-gray-600 dark:text-gray-400">
-                        <BsFileEarmarkPdfFill className="h-4 w-4 mr-2" />
+                        <Icons.Pdf className="h-4 w-4 mr-2" />
                         Only PDF (up to 4 MB)
                       </p>
                     </div>
@@ -121,7 +120,7 @@ function PaperSection({
               className="absolute right-[5px]"
               aria-label="load paper"
             >
-              <BookOpenText className="h-4 w-4" />
+              <Icons.Read className="h-4 w-4" />
             </Button>
           </form>
           <div className="text-left w-1/2 m-0 p-0">

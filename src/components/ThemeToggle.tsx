@@ -3,7 +3,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Moon, Sun } from "lucide-react"
+import { Icons } from "@/components/Icons"
 import { Button } from "./ui/button"
 
 const ThemeToggle = () => {
@@ -31,7 +31,11 @@ const ThemeToggle = () => {
         setDarkMode(!darkMode)
       }}
     >
-      {darkMode ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+      {darkMode ? (
+        <Icons.Moon className="h-4 w-4" />
+      ) : (
+        <Icons.Sun className="h-4 w-4" />
+      )}
     </Button>
   )
 }

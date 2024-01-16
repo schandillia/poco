@@ -2,15 +2,6 @@
 
 "use client"
 
-import {
-  ChevronLeft,
-  ChevronRight,
-  Loader,
-  RotateCw,
-  RotateCcw,
-  ZoomIn,
-  ZoomOut,
-} from "lucide-react"
 import { Document, Page, pdfjs } from "react-pdf"
 
 import "react-pdf/dist/Page/AnnotationLayer.css"
@@ -24,6 +15,7 @@ import { z } from "zod"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import SimpleBar from "simplebar-react"
+import { Icons } from "@/components/Icons"
 import { cn } from "@/lib/utils"
 
 import { Input } from "./ui/input"
@@ -89,7 +81,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
             variant="ghost"
             aria-label="previous page"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <Icons.Left className="h-4 w-4" />
           </Button>
 
           <div className="flex items-center gap-1.5">
@@ -122,7 +114,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
             variant="ghost"
             aria-label="next page"
           >
-            <ChevronRight className="h-4 w-4" />
+            <Icons.Right className="h-4 w-4" />
           </Button>
         </div>
 
@@ -135,7 +127,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
               setScale(scale - 0.25)
             }}
           >
-            <ZoomOut className="h-4 w-4" />
+            <Icons.ZoomOut className="h-4 w-4" />
           </Button>
           <span className="text-sm text-gray-600 dark:text-gray-400">
             {scale * 100}%
@@ -147,7 +139,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
               setScale(scale + 0.25)
             }}
           >
-            <ZoomIn className="h-4 w-4" />
+            <Icons.ZoomIn className="h-4 w-4" />
           </Button>
           <Button
             className="ml-2 uppercase"
@@ -166,14 +158,14 @@ function PdfRenderer({ url }: PdfRendererProps) {
             variant="ghost"
             aria-label="rotate 90 degrees"
           >
-            <RotateCcw className="h-4 w-4" />
+            <Icons.RotateLeft className="h-4 w-4" />
           </Button>
           <Button
             onClick={() => setRotation((prev) => prev + 90)}
             variant="ghost"
             aria-label="rotate 90 degrees"
           >
-            <RotateCw className="h-4 w-4" />
+            <Icons.RotateRight className="h-4 w-4" />
           </Button>
 
           <PdfFocus fileUrl={url} />
@@ -187,7 +179,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
             <Document
               loading={
                 <div className="flex justify-center">
-                  <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                  <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                 </div>
               }
               onLoadError={() => {
@@ -220,7 +212,7 @@ function PdfRenderer({ url }: PdfRendererProps) {
                 key={`@${scale}`}
                 loading={
                   <div className="flex justify-center">
-                    <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                    <Icons.Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
                   </div>
                 }
                 onRenderSuccess={() => setRenderedScale(scale)}

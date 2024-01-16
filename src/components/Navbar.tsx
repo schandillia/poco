@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { LogIn } from "lucide-react"
+import { Icons } from "@/components/Icons"
 import MaxWidthWrapper from "./MaxWidthWrapper"
 import { Button, buttonVariants } from "./ui/button"
 import UserAccountNav from "./UserAccountNav"
@@ -65,7 +65,7 @@ const Navbar = async () => {
                 {/* Native authentication */}
                 <LoginButton asChild>
                   <Button className={buttonVariants({ size: "sm" })}>
-                    Login <LogIn className="ml-1.5 h-5 w-5" />
+                    Login <Icons.Enter className="ml-1.5 h-5 w-5" />
                   </Button>
                 </LoginButton>
               </>

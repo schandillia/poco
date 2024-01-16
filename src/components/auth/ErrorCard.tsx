@@ -1,4 +1,4 @@
-import { AlertTriangle } from "lucide-react"
+import { Icons } from "@/components/Icons"
 import CardWrapper from "@/components/auth/CardWrapper"
 
 export default function ErrorCard() {
@@ -10,7 +10,7 @@ export default function ErrorCard() {
       backButtonLabel="Back to login"
     >
       <div className="w-full flex justify-center items-center">
-        <AlertTriangle className="text-destructive" />
+        <Icons.Alert className="text-destructive" />
       </div>
     </CardWrapper>
   )

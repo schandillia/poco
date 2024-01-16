@@ -6,7 +6,7 @@ import * as z from "zod"
 import { useState, useTransition } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
-import { Eye, EyeOff } from "lucide-react"
+import { Icons } from "@/components/Icons"
 import CardWrapper from "@/components/auth/CardWrapper"
 import { LoginSchema } from "@/schemas"
 import { Input } from "@/components/ui/input"
@@ -135,9 +135,13 @@ export default function LoginForm() {
                           />
                           <div className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400">
                             {showPassword ? (
-                              <Eye onClick={() => setShowPassword(false)} />
+                              <Icons.Show
+                                onClick={() => setShowPassword(false)}
+                              />
                             ) : (
-                              <EyeOff onClick={() => setShowPassword(true)} />
+                              <Icons.Hide
+                                onClick={() => setShowPassword(true)}
+                              />
                             )}
                           </div>
                         </div>
