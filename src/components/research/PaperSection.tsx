@@ -72,7 +72,7 @@ function PaperSection({
   return (
     <div className="w-full rounded-md shadow flex flex-col items-center">
       <div className="w-full max-h-screen border-2 rounded-md">
-        <div className="flex flex-col h-screen max-h-[calc(100vh-6.7rem)] items-center justify-center">
+        <div className="flex flex-col h-screen max-h-[calc(100vh-4.3rem)] items-center justify-center">
           {/* Load by drag and drop */}
           <Dropzone onDrop={(acceptedFiles) => onFileDrop(acceptedFiles[0])}>
             {({ getRootProps }) => (

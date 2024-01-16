@@ -86,7 +86,7 @@ function PaperViewer({ file }: PaperViewerProps) {
   }
 
   return (
-    <div className="w-full rounded-md shadow flex flex-col items-center">
+    <div className="w-full rounded-md shadow border-2 flex flex-col items-center">
       <div className="h-14 w-full border-b border-gray-300 dark:border-gray-500 flex items-center justify-between px-2">
         <div className="flex items-center gap-1.5">
           <Button
@@ -213,7 +213,7 @@ function PaperViewer({ file }: PaperViewerProps) {
       </div>
 
       <div className="flex-1 w-full max-h-screen">
-        <SimpleBar autoHide className="max-h-[calc(100vh-10rem)]">
+        <SimpleBar autoHide className="max-h-[calc(100vh-7.5rem)]">
           <div ref={ref}>
             <Document
               loading={
