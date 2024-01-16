@@ -56,7 +56,16 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
               className="max-h-full"
             >
               {new Array(numPages).fill(0).map((_, i) => (
-                <Page key={i} width={width || 1} pageNumber={i + 1} />
+                <Page
+                  key={i}
+                  width={width || 1}
+                  pageNumber={i + 1}
+                  loading={
+                    <div className="flex justify-center">
+                      <Loader className="my-24 h-6 w-6 text-green-600 animate-spin" />
+                    </div>
+                  }
+                />
               ))}
             </Document>
           </div>

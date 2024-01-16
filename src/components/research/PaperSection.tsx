@@ -124,9 +124,11 @@ function PaperSection({
               <BookOpenText className="h-4 w-4" />
             </Button>
           </form>
-          <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">
-            *Link must end in <span className="font-semibold">.pdf</span>
-          </p>
+          <div className="text-left w-1/2 m-0 p-0">
+            <p className="text-gray-600 dark:text-gray-400 text-sm ml-1">
+              Link must end in <span className="font-semibold">.pdf</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

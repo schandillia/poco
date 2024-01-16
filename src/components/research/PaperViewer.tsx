@@ -12,21 +12,19 @@ import {
   ZoomOut,
   UploadCloud,
 } from "lucide-react"
+import { MdOutlineCloudUpload } from "react-icons/md"
 import { Document, Page, pdfjs } from "react-pdf"
 
 import "react-pdf/dist/Page/AnnotationLayer.css"
 import "react-pdf/dist/Page/TextLayer.css"
-
 import { useResizeDetector } from "react-resize-detector"
 import { useState } from "react"
-
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import SimpleBar from "simplebar-react"
+import { useSession } from "next-auth/react"
 import { cn } from "@/lib/utils"
-
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
@@ -40,6 +38,8 @@ interface PaperViewerProps {
 }
 
 function PaperViewer({ file }: PaperViewerProps) {
+  const session = useSession()
+
   const { toast } = useToast()
 
   const [numPages, setNumPages] = useState<number>()
@@ -159,7 +159,8 @@ function PaperViewer({ file }: PaperViewerProps) {
             <ZoomIn className="h-4 w-4" />
           </Button>
           <Button
-            className="ml-2 uppercase"
+            size="sm"
+            className="uppercase"
             variant="secondary"
             onClick={() => {
               setScale(1)
@@ -171,14 +172,15 @@ function PaperViewer({ file }: PaperViewerProps) {
 
         <div className="flex gap-0">
           {/* Upload paper  */}
-          <Button
-            disabled
-            onClick={() => {}}
-            variant="ghost"
-            aria-label="Upload paper to cloud"
-          >
-            <UploadCloud className="h-4 w-4" />
-          </Button>
+          {session.data && (
+            <Button
+              onClick={() => {}}
+              variant="ghost"
+              aria-label="Upload paper to cloud"
+            >
+              <MdOutlineCloudUpload className="h-4 w-4" />
+            </Button>
+          )}
 
           {/* Rotate paper counterclockwise */}
           <Button
