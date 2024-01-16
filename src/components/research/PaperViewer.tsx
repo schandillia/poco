@@ -90,6 +90,7 @@ function PaperViewer({ file }: PaperViewerProps) {
       <div className="h-14 w-full border-b border-gray-300 dark:border-gray-500 flex items-center justify-between px-2">
         <div className="flex items-center gap-1.5">
           <Button
+            size="sm"
             disabled={currPage <= 1}
             onClick={() => {
               setCurrPage((prev) => (prev - 1 > 1 ? prev - 1 : 1))
@@ -121,6 +122,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           </div>
 
           <Button
+            size="sm"
             disabled={numPages === undefined || currPage === numPages}
             onClick={() => {
               setCurrPage((prev) =>
@@ -138,6 +140,7 @@ function PaperViewer({ file }: PaperViewerProps) {
         <div className="flex items-center gap-2">
           {/* Zoom out */}
           <Button
+            size="sm"
             disabled={scale === 1}
             variant="ghost"
             onClick={() => {
@@ -151,6 +154,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           </span>
           {/* Zoom in */}
           <Button
+            size="sm"
             variant="ghost"
             onClick={() => {
               setScale(scale + 0.25)
@@ -174,6 +178,8 @@ function PaperViewer({ file }: PaperViewerProps) {
           {/* Upload paper  */}
           {session.data && (
             <Button
+              size="sm"
+              className="ml-1"
               onClick={() => {}}
               variant="ghost"
               aria-label="Upload paper to cloud"
@@ -184,6 +190,7 @@ function PaperViewer({ file }: PaperViewerProps) {
 
           {/* Rotate paper counterclockwise */}
           <Button
+            size="sm"
             onClick={() => setRotation((prev) => normalizeRotation(prev - 90))}
             variant="ghost"
             aria-label="rotate 90 degrees counterclockwise"
@@ -192,6 +199,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           </Button>
           {/* Rotate paper clockwise */}
           <Button
+            size="sm"
             onClick={() => setRotation((prev) => normalizeRotation(prev + 90))}
             variant="ghost"
             aria-label="rotate 90 degrees clockwise"
