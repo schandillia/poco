@@ -6,6 +6,7 @@ import React, { useState } from "react"
 import PaperSection from "@/components/research/PaperSection"
 import ResearchSection from "@/components/research/ResearchSection"
 import PaperViewer from "@/components/research/PaperViewer"
+import ResearchChatbox from "@/components/research/ResearchChatbox"
 
 export default function Page() {
   const [file, setFile] = useState<File | null>(null)
@@ -23,7 +24,8 @@ export default function Page() {
 
         <div className="shrink-0 flex-[0.75] mr-4 lg:mr-8 xl:mr-6 rounded-tr-md rounded-tl-md border-2 shadow lg:w-96">
           {/* <Research area /> */}
-          <ResearchSection fileId={null} />
+          {!file && <ResearchSection />}
+          {file && <ResearchChatbox file={file} />}
         </div>
       </div>
     </div>

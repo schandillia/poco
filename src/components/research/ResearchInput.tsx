@@ -5,11 +5,7 @@ import { useContext, useRef } from "react"
 import { Button } from "../ui/button"
 import { Textarea } from "../ui/textarea"
 
-interface ResearchQueryProps {
-  isDisabled?: boolean
-}
-
-function ResearchQuery({ isDisabled }: ResearchQueryProps) {
+function ResearchInput() {
   return (
     <div className="absolute bottom-0 left-0 w-full">
       <div className="mx-2 flex flex-row gap-3 md:mx-4 md:last:mb-2 lg:mx-auto lg:max-w-2xl xl:max-w-3xl">
@@ -36,4 +32,4 @@ function ResearchQuery({ isDisabled }: ResearchQueryProps) {
     </div>
   )
 }
-export default ResearchQuery
+export default ResearchInput
