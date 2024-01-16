@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disables @typescript-eslint/no-unused-vars */
 
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { Upload, BookOpenText } from "lucide-react"
 import Dropzone from "react-dropzone"
 import { BsFileEarmarkPdfFill } from "react-icons/bs"
@@ -11,10 +11,6 @@ import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
-
-interface PaperSectionProps {
-  onFileDrop: (arg0: any) => void
-}
 
 function isPdfUrl(url: string) {
   const regex = /^https?:\/\/.*\.pdf$/i
