@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import PaperFullscreen from "@/components/research/PaperFullscreen"
-import PaperFocus from "@/components/research/PaperFocus"
+// import PaperFocus from "@/components/research/PaperFocus"
 import { Icons } from "@/components/Icons"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
@@ -194,7 +194,6 @@ function PaperViewer({ file }: PaperViewerProps) {
             <Icons.RotateRight className="h-4 w-4" />
           </Button>
 
-          <PaperFocus file={file} />
           <PaperFullscreen file={file} />
         </div>
       </div>

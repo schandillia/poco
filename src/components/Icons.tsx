@@ -4,7 +4,6 @@ import {
   LucideProps,
   UserRound,
   Loader,
-  Focus,
   Expand,
   ChevronLeft,
   ChevronRight,
@@ -57,7 +56,6 @@ export const Icons = {
   ZoomIn,
   ZoomOut,
   Loader,
-  Focus,
   Fullscreen: Expand,
   User: UserRound,
   logo: (props: LucideProps) => (
