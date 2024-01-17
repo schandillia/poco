@@ -1,15 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, no-console */
+
 "use client"
 
+import { useEffect, useState } from "react"
 import { Icons } from "@/components/Icons"
 import ResearchInput from "@/components/research/ResearchInput"
-import vectorize from "@/app/api/vectorize"
+// import vectorize from "@/app/api/vectorize"
+// import getChunkedDocsFromPDF from "@/lib/pdf-loader"
 
 interface ResearchChatboxProps {
   file: File
 }
 function ResearchChatbox({ file }: ResearchChatboxProps) {
-  if (file) vectorize(file)
-
+  const handleVectorize = async (givenFile: File) => {
+    try {
+      const res = await fetch("/api/vectorize", {
+        method: "POST",
+        body: givenFile,
+      })
+      if (!res.ok) throw new Error(await res.text())
+      console.log(await res.json())
+    } catch (error: any) {
+      console.error(error)
+    }
+  }
+  if (file) handleVectorize(file)
   return (
     <div className="relative min-h-full bg-gray-50 dark:bg-zinc-800 flex divide-y divide-gray-300 dark:divide-gray-500 flex-col justify-between gap-2">
       <div className="flex-1 flex justify-center items-center flex-col mb-28">
