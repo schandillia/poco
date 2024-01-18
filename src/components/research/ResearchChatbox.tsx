@@ -5,13 +5,13 @@
 import { useEffect, useState } from "react"
 import { Icons } from "@/components/Icons"
 import ResearchInput from "@/components/research/ResearchInput"
-// import vectorize from "@/app/api/vectorize"
-// import getChunkedDocsFromPDF from "@/lib/pdf-loader"
+import { useToast } from "@/components/ui/use-toast"
 
 interface ResearchChatboxProps {
   file: File
 }
 function ResearchChatbox({ file }: ResearchChatboxProps) {
+  const { toast } = useToast()
   const handleVectorize = async (givenFile: File) => {
     try {
       const res = await fetch("/api/vectorize", {
@@ -21,10 +21,15 @@ function ResearchChatbox({ file }: ResearchChatboxProps) {
       if (!res.ok) throw new Error(await res.text())
       console.log(await res.json())
     } catch (error: any) {
-      console.error(error)
+      toast({
+        title: "Error processing your paper",
+        description: "Please try again later",
+        variant: "destructive",
+      })
     }
   }
   if (file) handleVectorize(file)
+
   return (
     <div className="relative min-h-full bg-gray-50 dark:bg-zinc-800 flex divide-y divide-gray-300 dark:divide-gray-500 flex-col justify-between gap-2">
       <div className="flex-1 flex justify-center items-center flex-col mb-28">

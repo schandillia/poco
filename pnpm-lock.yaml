@@ -14,6 +14,9 @@ dependencies:
   '@kinde-oss/kinde-auth-nextjs':
     specifier: ^2.0.13
     version: 2.0.13(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
+  '@langchain/community':
+    specifier: ^0.0.17
+    version: 0.0.17(@pinecone-database/pinecone@1.1.3)
   '@langchain/openai':
     specifier: ^0.0.12
     version: 0.0.12
