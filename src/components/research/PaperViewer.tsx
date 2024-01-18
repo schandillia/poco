@@ -10,10 +10,6 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import SimpleBar from "simplebar-react"
 import { useSession } from "next-auth/react"
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -21,7 +17,6 @@ import { useToast } from "@/components/ui/use-toast"
 import PaperFullscreen from "@/components/research/PaperFullscreen"
 // import PaperFocus from "@/components/research/PaperFocus"
 import { Icons } from "@/components/Icons"
-import { DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
