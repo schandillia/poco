@@ -10,6 +10,10 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import SimpleBar from "simplebar-react"
 import { useSession } from "next-auth/react"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -17,6 +21,7 @@ import { useToast } from "@/components/ui/use-toast"
 import PaperFullscreen from "@/components/research/PaperFullscreen"
 // import PaperFocus from "@/components/research/PaperFocus"
 import { Icons } from "@/components/Icons"
+import { DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
@@ -75,7 +80,7 @@ function PaperViewer({ file }: PaperViewerProps) {
   return (
     <div className="w-full rounded-md shadow border-2 flex flex-col items-center">
       <div className="h-14 w-full border-b border-gray-300 dark:border-gray-500 flex items-center justify-between px-2">
-        <div className="flex items-center gap-1.5">
+        <div className="mx-auto md:mx-0 flex items-center gap-1.5">
           <Button
             size="sm"
             disabled={currPage <= 1}
@@ -124,7 +129,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2">
           {/* Zoom out */}
           <Button
             size="sm"
@@ -136,6 +141,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           >
             <Icons.ZoomOut className="h-4 w-4" />
           </Button>
+          {/* Zoom level */}
           <span className="text-sm text-gray-600 dark:text-gray-400">
             {scale * 100}%
           </span>
@@ -149,6 +155,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           >
             <Icons.ZoomIn className="h-4 w-4" />
           </Button>
+          {/* Fit to page */}
           <Button
             size="sm"
             className="uppercase"
@@ -174,9 +181,9 @@ function PaperViewer({ file }: PaperViewerProps) {
               <Icons.UploadToCloud className="h-4 w-4" />
             </Button>
           )}
-
           {/* Rotate paper counterclockwise */}
           <Button
+            className="hidden md:block"
             size="sm"
             onClick={() => setRotation((prev) => normalizeRotation(prev - 90))}
             variant="ghost"
@@ -186,6 +193,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           </Button>
           {/* Rotate paper clockwise */}
           <Button
+            className="hidden md:block"
             size="sm"
             onClick={() => setRotation((prev) => normalizeRotation(prev + 90))}
             variant="ghost"
@@ -193,7 +201,7 @@ function PaperViewer({ file }: PaperViewerProps) {
           >
             <Icons.RotateRight className="h-4 w-4" />
           </Button>
-
+          {/* Show paper fullscreen */}
           <PaperFullscreen file={file} />
         </div>
       </div>

@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow, react/no-array-index-key */
 
-import React, { useState, useCallback } from "react"
+import React, { useState } from "react"
 import SimpleBar from "simplebar-react"
 import { Document, Page } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
 
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/Icons"
@@ -27,9 +26,10 @@ function PdfFullscreen({ file }: PdfFullscreenProps) {
   return (
     <>
       <Button
+        size="sm"
         onClick={handle.enter}
         variant="ghost"
-        className="gap-1.5"
+        className="gap-1.5 hidden md:block"
         aria-label="fullscreen"
       >
         <Icons.Fullscreen className="h-4 w-4" />

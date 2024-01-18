@@ -11,10 +11,10 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
-import { Button } from "./ui/button"
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Icons } from "./Icons"
+import { Icons } from "@/components/Icons"
 
 interface UserAccountNavProps {
   email: string | undefined
@@ -49,7 +49,7 @@ const UserAccountNav = async ({
                   <span className="text-green-600">{displayName}</span>
                 )}
                 {!displayName && (
-                  <Icons.user className="h-4 w-4 text-green-600" />
+                  <Icons.User className="h-4 w-4 text-green-600" />
                 )}
               </AvatarFallback>
             )}
