@@ -96,5 +96,6 @@ const login = async (
 
     throw error
   }
+  return { error: "Unexpected error" }
 }
 export default login

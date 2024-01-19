@@ -5,14 +5,15 @@ import { useSearchParams } from "next/navigation"
 import { Icons } from "@/components/Icons"
 
 import { Button } from "@/components/ui/button"
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 
 export default function Social() {
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callback") || DEFAULT_LOGIN_REDIRECT
+  const callbackUrl = searchParams.get("callback")
 
   const onClick = (provider: "google" | "apple") => {
-    signIn(provider, { callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT })
+    const currentUrl = `/${window.location.href.split("/").slice(3).join("/")}` // Get the current URL slug
+    const originUrl = callbackUrl !== null ? callbackUrl : currentUrl
+    signIn(provider, { callbackUrl: originUrl })
     return false
   }
 

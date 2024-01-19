@@ -63,7 +63,7 @@ const Navbar = async () => {
                 </Link>
 
                 {/* Native authentication */}
-                <LoginButton asChild>
+                <LoginButton asChild mode="modal">
                   <Button className={buttonVariants({ size: "sm" })}>
                     Login <Icons.Enter className="ml-1.5 h-5 w-5" />
                   </Button>
