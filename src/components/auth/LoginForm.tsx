@@ -23,10 +23,11 @@ import { Button } from "@/components/ui/button"
 import FormError from "@/components/FormError"
 import FormSuccess from "@/components/FormSuccess"
 import login from "@/app/actions/login"
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 
 export default function LoginForm() {
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callback")
+  const callbackUrl = searchParams.get("callback") || DEFAULT_LOGIN_REDIRECT
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with another provider"
@@ -50,12 +51,7 @@ export default function LoginForm() {
     setError("")
     setSuccess("")
     startTransition(() => {
-      const currentUrl = `/${window.location.href
-        .split("/")
-        .slice(3)
-        .join("/")}` // Get the current URL slug
-      const originUrl = callbackUrl !== null ? callbackUrl : currentUrl
-      login(values, originUrl)
+      login(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
             form.reset()
@@ -169,6 +165,9 @@ export default function LoginForm() {
           <FormSuccess message={success} />
           <Button type="submit" disabled={isPending} className="w-full">
             {showTwoFactor ? "Confirm" : "Login"}
+            {isPending && (
+              <Icons.SmoothLoader className="h-4 w-4 ml-4 animate-spin" />
+            )}
           </Button>
         </form>
       </Form>

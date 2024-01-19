@@ -33,6 +33,7 @@ export default function RegisterForm() {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   })
 
@@ -116,6 +117,7 @@ export default function RegisterForm() {
                         disabled={isPending}
                         placeholder="********"
                         type={showPassword ? "text" : "password"}
+                        value={field.value || ""}
                       />
                       <div className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400">
                         {showPassword ? (
@@ -135,6 +137,9 @@ export default function RegisterForm() {
           <FormSuccess message={success} />
           <Button type="submit" disabled={isPending} className="w-full">
             Register
+            {isPending && (
+              <Icons.SmoothLoader className="h-4 w-4 ml-4 animate-spin" />
+            )}
           </Button>
         </form>
       </Form>

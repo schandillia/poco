@@ -3,8 +3,8 @@
 import logout from "@/app/actions/logout"
 
 export default function SignoutButton() {
-  const handleSignout = () => {
-    logout()
+  const handleSignout = async () => {
+    await logout()
   }
 
   return (

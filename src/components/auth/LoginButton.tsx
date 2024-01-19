@@ -3,8 +3,13 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 import LoginForm from "@/components/auth/LoginForm"
+import LoginFormModal from "@/components/auth/LoginFormModal"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import RegisterForm from "./RegisterForm"
+import RegisterFormModal from "./RegisterFormModal"
+import ResetFormModal from "./ResetFormModal"
 
 interface LoginButtonProps {
   children: React.ReactNode
@@ -22,13 +27,31 @@ export default function LoginButton({
     event.preventDefault()
     router.push("/auth/login")
   }
+  const [type, setType] = useState("Login")
+
+  const handleTypeChange = (newType: string) => {
+    setType(newType)
+  }
+
+  // Callback function to set type to "Login" when the dialog is closed
+  const handleDialogClose = () => {
+    setType("Login")
+  }
 
   if (mode === "modal")
     return (
-      <Dialog>
+      <Dialog onOpenChange={handleDialogClose}>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
         <DialogContent className="p-0 w-auto bg-transparent border-none">
-          <LoginForm />
+          {type === "Login" && (
+            <LoginFormModal onTypeChange={handleTypeChange} />
+          )}
+          {type === "Register" && (
+            <RegisterFormModal onTypeChange={handleTypeChange} />
+          )}
+          {type === "Reset" && (
+            <ResetFormModal onTypeChange={handleTypeChange} />
+          )}
         </DialogContent>
       </Dialog>
     )
