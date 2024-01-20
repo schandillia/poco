@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from "react"
 import { Icons } from "@/components/Icons"
-import { Button } from "./ui/button"
+import { Button } from "@/components/ui/button"
 
 const ThemeToggle = () => {
   const [darkMode, setDarkMode] = useState(false)

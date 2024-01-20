@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, react/require-default-props */
 
-import { Button } from "../ui/button"
-import { Textarea } from "../ui/textarea"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 import { Icons } from "@/components/Icons"
 
 function ResearchInput() {

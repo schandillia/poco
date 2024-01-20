@@ -1,12 +1,12 @@
 import Link from "next/link"
 import { Icons } from "@/components/Icons"
-import MaxWidthWrapper from "./MaxWidthWrapper"
-import { Button, buttonVariants } from "./ui/button"
-import UserAccountNav from "./UserAccountNav"
-import ThemeToggle from "./ThemeToggle"
-import LoginButton from "./auth/LoginButton"
+import MaxWidthWrapper from "@/components/MaxWidthWrapper"
+import { Button, buttonVariants } from "@/components/ui/button"
+import UserAccountNav from "@/components/UserAccountNav"
+import ThemeToggle from "@/components/ThemeToggle"
+import LoginButton from "@/components/auth/LoginButton"
 import { auth } from "@/auth"
-// import MobileNav from "./MobileNav"
+// import MobileNav from "@/components/MobileNav"
 
 const Navbar = async () => {
   const session = await auth()

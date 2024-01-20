@@ -21,9 +21,9 @@ import { Button } from "@/components/ui/button"
 import FormError from "@/components/FormError"
 import FormSuccess from "@/components/FormSuccess"
 import login from "@/app/actions/login"
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card"
-import Header from "./Header"
-import Social from "./Social"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import Header from "@/components/auth/Header"
+import Social from "@/components/auth/Social"
 
 export default function LoginFormModal({
   onTypeChange,

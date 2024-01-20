@@ -6,8 +6,8 @@ import { Document, Page } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import { Icons } from "@/components/Icons"
-import { useToast } from "./ui/use-toast"
-import { Button } from "./ui/button"
+import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button"
 
 interface PdfFullscreenProps {
   fileUrl: string

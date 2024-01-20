@@ -3,13 +3,11 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import LoginForm from "@/components/auth/LoginForm"
+import { useState } from "react"
 import LoginFormModal from "@/components/auth/LoginFormModal"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import RegisterForm from "./RegisterForm"
-import RegisterFormModal from "./RegisterFormModal"
-import ResetFormModal from "./ResetFormModal"
+import RegisterFormModal from "@/components/auth/RegisterFormModal"
+import ResetFormModal from "@/components/auth/ResetFormModal"
 
 interface LoginButtonProps {
   children: React.ReactNode

@@ -18,11 +18,11 @@ import SimpleBar from "simplebar-react"
 import { Icons } from "@/components/Icons"
 import { cn } from "@/lib/utils"
 
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
-import { useToast } from "./ui/use-toast"
-import PdfFullscreen from "./PdfFullscreen"
-import PdfFocus from "./PdfFocus"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { useToast } from "@/components/ui/use-toast"
+import PdfFullscreen from "@/components/PdfFullscreen"
+import PdfFocus from "@/components/PdfFocus"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 

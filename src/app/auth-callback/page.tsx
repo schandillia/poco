@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 import { Icons } from "@/components/Icons"
-import { trpc } from "../_trpc/client"
+import { trpc } from "@/app/_trpc/client"
 
 function Page() {
   const router = useRouter()

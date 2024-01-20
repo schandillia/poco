@@ -18,8 +18,8 @@ import { Button } from "@/components/ui/button"
 import FormError from "@/components/FormError"
 import FormSuccess from "@/components/FormSuccess"
 import reset from "@/app/actions/reset"
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card"
-import Header from "./Header"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import Header from "@/components/auth/Header"
 
 export default function ResetFormModal({
   onTypeChange,

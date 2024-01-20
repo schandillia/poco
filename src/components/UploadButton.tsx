@@ -7,12 +7,12 @@ import Dropzone from "react-dropzone"
 import { FileUp, File } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Icons } from "@/components/Icons"
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
-import { Button } from "./ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 
-import { Progress } from "./ui/progress"
+import { Progress } from "@/components/ui/progress"
 import { useUploadThing } from "@/lib/uploadthing"
-import { useToast } from "./ui/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 import { trpc } from "@/app/_trpc/client"
 
 function UploadDropzone() {

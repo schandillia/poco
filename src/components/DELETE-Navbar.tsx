@@ -5,12 +5,12 @@ import {
   getKindeServerSession,
 } from "@kinde-oss/kinde-auth-nextjs/server"
 import { ArrowRight } from "lucide-react"
-import MaxWidthWrapper from "./MaxWidthWrapper"
-import { Button, buttonVariants } from "./ui/button"
-import UserAccountNav from "./UserAccountNav"
-import ThemeToggle from "./ThemeToggle"
-import LoginButton from "./auth/LoginButton"
-// import MobileNav from "./MobileNav"
+import MaxWidthWrapper from "@/components/MaxWidthWrapper"
+import { Button, buttonVariants } from "@/components/ui/button"
+import UserAccountNav from "@/components/UserAccountNav"
+import ThemeToggle from "@/components/ThemeToggle"
+import LoginButton from "@/components/auth/LoginButton"
+// import MobileNav from "@/components/MobileNav"
 
 const Navbar = async () => {
   const { getUser } = getKindeServerSession()

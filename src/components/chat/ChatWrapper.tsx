@@ -5,10 +5,10 @@
 import { ChevronLeft, Loader, XCircle } from "lucide-react"
 import Link from "next/link"
 import { trpc } from "@/app/_trpc/client"
-import ChatInput from "./ChatInput"
-import Messages from "./Messages"
-import { buttonVariants } from "../ui/button"
-// import { ChatContextProvider } from "./ChatContext"
+import ChatInput from "@/components/chat/ChatInput"
+import Messages from "@/components/chat/Messages"
+import { buttonVariants } from "@/components/ui/button"
+// import { ChatContextProvider } from "@/components/chat/ChatContext"
 
 interface chatWrapperProps {
   fileId: string
