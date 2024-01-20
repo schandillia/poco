@@ -107,7 +107,7 @@ function PaperSection({
             <Separator className="mb-0.5 ml-2 dark:bg-gray-400" />
           </div>
           <form
-            className="relative w-1/2 flex items-center"
+            className="relative w-3/4 flex items-center"
             onSubmit={handleSubmit}
           >
             <Input
@@ -123,7 +123,7 @@ function PaperSection({
               <Icons.Read className="h-4 w-4" />
             </Button>
           </form>
-          <div className="text-left w-1/2 m-0 p-0">
+          <div className="text-left w-3/4 m-0 p-0">
             <p className="text-gray-600 dark:text-gray-400 text-sm ml-1">
               Link must end in <span className="font-semibold">.pdf</span>
             </p>
