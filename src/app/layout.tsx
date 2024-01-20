@@ -3,7 +3,6 @@ import { SessionProvider } from "next-auth/react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { auth } from "@/auth"
-import Navbar from "@/components/Navbar"
 import Providers from "@/components/Providers"
 import { cn } from "@/lib/utils"
 import "@/app/globals.css"
@@ -29,7 +28,6 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         <Providers>
           <body className={cn(bgStyle, inter.className)}>
             <Toaster />
-            <Navbar />
             {children}
           </body>
         </Providers>

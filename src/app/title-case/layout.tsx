@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Navbar from "@/components/Navbar"
 
 export const metadata: Metadata = {
   title: "Convert to title case",
@@ -6,6 +7,11 @@ export const metadata: Metadata = {
 }
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  return <div>{children}</div>
+  return (
+    <>
+      <Navbar />
+      <div>{children}</div>
+    </>
+  )
 }
 export default layout
