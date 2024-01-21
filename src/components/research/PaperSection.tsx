@@ -91,7 +91,7 @@ function PaperSection({
                         <span className="font-semibold">click to upload</span>
                       </p>
                       <p className="flex flex-row text-sm text-gray-600 dark:text-gray-400">
-                        <Icons.Pdf className="h-4 w-4 mr-2" />
+                        <Icons.Pdf className="h-4 w-4 mr-2 text-red-400" />
                         Only PDF (up to 4 MB)
                       </p>
                     </div>
