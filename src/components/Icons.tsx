@@ -57,7 +57,7 @@ export const Icons = {
   RotateLeft: RotateCcw,
   ZoomIn,
   ZoomOut,
-  Loader,
+  Loader: Loader2,
   SmoothLoader: Loader2,
   Fullscreen: Expand,
   User: UserRound,
