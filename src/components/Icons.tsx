@@ -3,7 +3,6 @@
 import {
   LucideProps,
   UserRound,
-  Loader,
   Loader2,
   Expand,
   ChevronLeft,
@@ -31,6 +30,7 @@ import { MdKeyboardArrowRight, MdOutlineCloudUpload } from "react-icons/md"
 import { FcGoogle } from "react-icons/fc"
 import { FaApple } from "react-icons/fa"
 import { BsFileEarmarkPdfFill } from "react-icons/bs"
+import { RiLoader3Fill } from "react-icons/ri"
 
 export const Icons = {
   Pdf: BsFileEarmarkPdfFill,
@@ -57,8 +57,8 @@ export const Icons = {
   RotateLeft: RotateCcw,
   ZoomIn,
   ZoomOut,
-  Loader: Loader2,
-  SmoothLoader: Loader2,
+  Loader: RiLoader3Fill,
+  ButtonLoader: Loader2,
   Fullscreen: Expand,
   User: UserRound,
   Menu: MoreVertical,

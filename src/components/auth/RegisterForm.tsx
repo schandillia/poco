@@ -138,7 +138,7 @@ export default function RegisterForm() {
           <Button type="submit" disabled={isPending} className="w-full">
             Register
             {isPending && (
-              <Icons.SmoothLoader className="h-4 w-4 ml-4 animate-spin" />
+              <Icons.ButtonLoader className="h-4 w-4 ml-4 animate-spin" />
             )}
           </Button>
         </form>
