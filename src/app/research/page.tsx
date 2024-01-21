@@ -22,7 +22,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="mt-3 ml-4 mb-2.5 md:mt-0 md:ml-0 shrink-0 flex-[0.75] mr-4 lg:mr-8 xl:mr-6 rounded-tr-md rounded-tl-md border-2 shadow lg:w-96">
+        <div className="mt-3 ml-4 mb-2.5 md:mt-0 md:ml-0 shrink-0 flex-[0.75] mr-4 lg:mr-8 xl:mr-6 rounded-md border-2 shadow lg:w-96">
           {/* <Research area /> */}
           {!file && <ResearchSection />}
           {file && <ResearchChatbox file={file} />}
