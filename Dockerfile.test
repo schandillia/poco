@@ -1,19 +1,17 @@
-# Install Node base image with Alpine Ubuntu
-FROM node:20.11-alpine AS base
-
 # --------------------------------------------------------
 # Build stage
 # --------------------------------------------------------
-FROM base AS builder
+# Install Node base image with Alpine Ubuntu
+FROM node:20.11-alpine AS builder
 # Set the working directory inside the container
 WORKDIR /app
 # Install pnpm globally in the builder stage
 RUN apk add --no-cache bash
-RUN npm install -g pnpm
+RUN corepack enable pnpm
 # Copy package.json and pnpm-lock.yaml
 COPY pnpm-lock.yaml package.json ./
 # Install dependencies using pnpm
-RUN pnpm install
+RUN pnpm i --frozen-lockfile
 # Copy the rest of the files to the working directory
 COPY . .
 # Generate Prisma Client
@@ -27,10 +25,12 @@ RUN pnpm build
 # Runner stage
 # --------------------------------------------------------
 # Install Node base image with Alpine Ubuntu
-FROM base AS runner
+FROM node:20.11-alpine AS runner
 # Set the working directory inside the container
 WORKDIR /app
 
+# Disable NextJS telemetry during runtime
+ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -40,6 +40,8 @@ RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
 # Copy only the necessary files from the builder stage
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./static
