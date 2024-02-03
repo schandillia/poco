@@ -5,7 +5,7 @@
 import React from "react"
 import Dropzone from "react-dropzone"
 import axios from "axios"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -36,7 +36,7 @@ function PaperSection({
         // Handle potential missing content-disposition header
         const filename =
           response.headers["Content-Disposition"]?.split("filename=")[1] ??
-          "paper.pdf"
+          paperLink.substring(paperLink.lastIndexOf("/") + 1)
 
         const downloadedFile = new File([response.data], filename)
         setFile(downloadedFile)
@@ -85,7 +85,7 @@ function PaperSection({
                     className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer"
                   >
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Icons.Upload className="h-6 w-6 text-gray-600 dark:text-gray-400 mb-2" />
+                      <Icons.Inbox className="h-6 w-6 text-green-600 mb-6" />
                       <p className="mb-2 text-md text-gray-600 dark:text-gray-400">
                         Drag a file here or{" "}
                         <span className="font-semibold">click to upload</span>

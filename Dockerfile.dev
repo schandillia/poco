@@ -1,0 +1,27 @@
+# Install Node base image with Alpine Ubuntu
+FROM node:20.11-alpine
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package.json and pnpm-lock.yaml
+COPY pnpm-lock.yaml package.json ./
+
+# Copy the rest of the files to the working directory
+COPY . .
+
+# Install dependencies using pnpm
+RUN pnpm install
+
+# Generate Prisma Client
+RUN npx prisma db push
+RUN npx prisma generate
+
+# Expose port 3000 from the container
+EXPOSE 3000
+
+# Start the Next.js server
+CMD ["pnpm", "dev"]

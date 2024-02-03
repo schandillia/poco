@@ -38,3 +38,7 @@ next-env.d.ts
 # custom
 next.config.js
 postcss.config.js
+
+# vendor components
+/src/components/ui/
+/src/lib/db.ts

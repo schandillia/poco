@@ -4,9 +4,9 @@ import { useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 import newVerification from "@/app/actions/new-verification"
 import CardWrapper from "@/components/auth/CardWrapper"
-import FormError from "@/components/FormError"
-import FormSuccess from "@/components/FormSuccess"
-import { Icons } from "@/components/Icons"
+import FormError from "@/components/commons/FormError"
+import FormSuccess from "@/components/commons/FormSuccess"
+import { Icons } from "@/components/commons/Icons"
 
 function NewVerificationForm() {
   const [error, setError] = useState<string | undefined>()

@@ -3,7 +3,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 import { Button } from "@/components/ui/button"
 
 const ThemeToggle = () => {

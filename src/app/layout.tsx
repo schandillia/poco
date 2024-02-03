@@ -3,7 +3,6 @@ import { SessionProvider } from "next-auth/react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { auth } from "@/auth"
-import Providers from "@/components/Providers"
 import { cn } from "@/lib/utils"
 import "@/app/globals.css"
 import "react-loading-skeleton/dist/skeleton.css"
@@ -24,13 +23,11 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SessionProvider session={session}>
-      <html lang="en" className="light">
-        <Providers>
-          <body className={cn(bgStyle, inter.className)}>
-            <Toaster />
-            {children}
-          </body>
-        </Providers>
+      <html lang="en">
+        <body className={cn(bgStyle, inter.className)}>
+          <Toaster />
+          {children}
+        </body>
       </html>
     </SessionProvider>
   )

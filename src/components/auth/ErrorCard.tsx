@@ -1,4 +1,4 @@
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 import CardWrapper from "@/components/auth/CardWrapper"
 
 export default function ErrorCard() {

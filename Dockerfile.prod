@@ -1,0 +1,50 @@
+# --------------------------------------------------------
+# Build stage
+# --------------------------------------------------------
+# Install Node base image with Alpine Ubuntu
+FROM node:20.11-alpine AS builder
+# Set the working directory inside the container
+WORKDIR /app
+# Install pnpm globally in the builder stage
+RUN apk add --no-cache bash
+RUN npm install -g pnpm
+# Copy package.json and pnpm-lock.yaml
+COPY pnpm-lock.yaml package.json ./
+# Install dependencies using pnpm
+RUN pnpm install
+# Copy the rest of the files to the working directory
+COPY . .
+# Generate Prisma Client
+RUN npx prisma db push
+RUN npx prisma generate
+RUN pnpm build
+# --------------------------------------------------------
+
+
+# --------------------------------------------------------
+# Runner stage
+# --------------------------------------------------------
+# Install Node base image with Alpine Ubuntu
+FROM node:20.11-alpine AS runner
+# Set the working directory inside the container
+WORKDIR /app
+
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Set the correct permission for prerender cache
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+# Copy only the necessary files from the builder stage
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./static
+
+USER nextjs
+
+# Expose port 3000 from the container
+EXPOSE 3000
+# Start the Next.js server
+CMD ["node", "server.js"]

@@ -17,8 +17,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
-import FormError from "@/components/FormError"
-import FormSuccess from "@/components/FormSuccess"
+import FormError from "@/components/commons/FormError"
+import FormSuccess from "@/components/commons/FormSuccess"
 import newPassword from "@/app/actions/new-password"
 
 export default function NewPasswordForm() {

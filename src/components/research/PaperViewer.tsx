@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import PaperFullscreen from "@/components/research/PaperFullscreen"
 // import PaperFocus from "@/components/research/PaperFocus"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 

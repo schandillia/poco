@@ -8,7 +8,7 @@ import { useResizeDetector } from "react-resize-detector"
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 
 interface PdfFullscreenProps {
   file: any

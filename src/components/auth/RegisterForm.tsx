@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useState, useTransition } from "react"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 import CardWrapper from "@/components/auth/CardWrapper"
 import { RegisterSchema } from "@/schemas"
 import { Input } from "@/components/ui/input"
@@ -18,8 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
-import FormError from "@/components/FormError"
-import FormSuccess from "@/components/FormSuccess"
+import FormError from "@/components/commons/FormError"
+import FormSuccess from "@/components/commons/FormSuccess"
 import register from "@/app/actions/register"
 
 export default function RegisterForm() {

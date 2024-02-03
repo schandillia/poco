@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 
 interface UserAccountNavProps {
   email: string | undefined

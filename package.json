@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "next telemetry disable",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -90,6 +91,7 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-next": "^0.0.0",
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.33.2",

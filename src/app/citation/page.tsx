@@ -1,4 +1,4 @@
-// import TitleCaseInput from "@/components/TitleCaseInput"
+// import TitleCaseInput from "@/components/title-case/TitleCaseInput"
 
 "use client"
 

@@ -223,6 +223,9 @@ devDependencies:
   eslint-plugin-n:
     specifier: '^15.0.0 || ^16.0.0 '
     version: 16.6.1(eslint@8.56.0)
+  eslint-plugin-next:
+    specifier: ^0.0.0
+    version: 0.0.0
   eslint-plugin-prettier:
     specifier: ^5.1.2
     version: 5.1.2(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.1.1)
@@ -3554,6 +3557,10 @@ packages:
       minimatch: 3.1.2
       resolve: 1.22.8
       semver: 7.5.4
+    dev: true
+
+  /eslint-plugin-next@0.0.0:
+    resolution: {integrity: sha512-IldNDVb6WNduggwRbYzSGZhaskUwVecJ6fhmqwX01+S1aohwAWNzU4me6y47DDzpD/g0fdayNBGxEdt9vKkUtg==}
     dev: true
 
   /eslint-plugin-prettier@5.1.2(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.1.1):

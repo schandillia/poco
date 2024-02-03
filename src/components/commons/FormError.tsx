@@ -1,4 +1,4 @@
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 
 interface FormErrorProps {
   message?: string

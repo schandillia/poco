@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react"
 import { useSearchParams } from "next/navigation"
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/commons/Icons"
 
 import { Button } from "@/components/ui/button"
 
