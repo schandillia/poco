@@ -1,54 +1,71 @@
-# --------------------------------------------------------
-# Build stage
-# --------------------------------------------------------
-# Install Node base image with Alpine Ubuntu
-FROM node:20.11-alpine AS builder
-# Set the working directory inside the container
+FROM node:18-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-# Install pnpm globally in the builder stage
-RUN apk add --no-cache bash
-RUN corepack enable pnpm
-# Copy package.json and pnpm-lock.yaml
-COPY pnpm-lock.yaml package.json ./
-# Install dependencies using pnpm
-RUN pnpm i --frozen-lockfile
-# Copy the rest of the files to the working directory
+
+# Install dependencies based on the preferred package manager
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+RUN \
+  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
+
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Generate Prisma Client
-RUN npx prisma db push
+
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+# Uncomment the following line in case you want to disable telemetry during the build.
+ENV NEXT_TELEMETRY_DISABLED 1
 RUN npx prisma generate
-RUN pnpm build
-# --------------------------------------------------------
+RUN npm run build
 
+RUN \
+  if [ -f yarn.lock ]; then yarn run build; \
+  elif [ -f package-lock.json ]; then npm run build; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
 
-# --------------------------------------------------------
-# Runner stage
-# --------------------------------------------------------
-# Install Node base image with Alpine Ubuntu
-FROM node:20.11-alpine AS runner
-# Set the working directory inside the container
+# Production image, copy all the files and run next
+FROM base AS runner
 WORKDIR /app
 
-# Disable NextJS telemetry during runtime
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV production
+# Uncomment the following line in case you want to disable telemetry during runtime.
+# ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
 
 # Set the correct permission for prerender cache
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Copy only the necessary files from the builder stage
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./static
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-# Expose port 3000 from the container
 EXPOSE 3000
-# Start the Next.js server
+
+ENV PORT 3000
+# set hostname to localhost
+ENV HOSTNAME "0.0.0.0"
+
+# server.js is created by next build from the standalone output
+# https://nextjs.org/docs/pages/api-reference/next-config-js/output
 CMD ["node", "server.js"]
