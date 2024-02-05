@@ -23,8 +23,8 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 # Generate Prisma Client
-RUN pnpx prisma db push
-RUN pnpx prisma generate
+RUN npx prisma db push
+RUN npx prisma generate
 
 RUN corepack enable pnpm
 RUN pnpm i --frozen-lockfile
