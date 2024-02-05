@@ -1,18 +1,18 @@
 version: "3.8"
 
 services:
-  poco-production:
+  poco-web-prod:
+    image: poco-web-prod:1.0
+    env_file:
+      - .env
     build:
       context: .
       dockerfile: Dockerfile.prod
-    container_name: poco-web-prod
+      args:
+        DATABASE_URL: "{{ .env.DATABASE_URL }}"
+    container_name: poco-web-prod-1
     ports:
       - "3000:3000"
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    # ... other configurations for dev service
 
   # poco-development:
   #   build:
@@ -26,4 +26,3 @@ services:
   #     - /app/node_modules
   #   env_file:
   #     - .env
-  # ... other configurations for dev service
