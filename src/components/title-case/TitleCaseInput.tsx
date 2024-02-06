@@ -4,7 +4,6 @@ import { useState, useRef } from "react"
 import { Icons } from "@/components/commons/Icons"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/components/ui/use-toast"
 import toTitleCase from "@/lib/to-title-case"
 
 import { Label } from "@/components/ui/label"
@@ -19,8 +18,7 @@ import {
 function TitleCaseInput() {
   const [value, setValue] = useState("")
   const [selectedStyle, setSelectedStyle] = useState("ama")
-
-  const { toast } = useToast()
+  const [isCopied, setIsCopied] = useState(false)
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -44,16 +42,17 @@ function TitleCaseInput() {
       line.replace(/[^\S\r\n]+/g, " ").trim(),
     )
     const newValue = trimmedLines.join("\n")
-    setValue(newValue)
+    if (newValue.trim() === "") return
     navigator.clipboard.writeText(newValue)
-    toast({
-      description: "Converted text copied to clipboard.",
-      variant: "default",
-    })
+    setIsCopied(true)
+    setTimeout(() => {
+      setIsCopied(false)
+    }, 5000) // time in milliseconds
   }
 
   const handleClearClick = () => {
     setValue("")
+    setIsCopied(false)
   }
 
   const textStats = (inputText: string) => {
@@ -114,7 +113,7 @@ function TitleCaseInput() {
             />
             <Button
               className="absolute bottom-1.5 right-[60px]"
-              variant="ghost"
+              style={{ backgroundColor: "transparent" }}
               aria-label="clear"
               onClick={handleClearClick}
             >
@@ -124,18 +123,29 @@ function TitleCaseInput() {
                 }`}
               />
             </Button>
-            <Button
-              className="absolute bottom-1.5 right-[8px]"
-              variant="ghost"
-              aria-label="convert"
-              onClick={handleCopyClick}
-            >
-              <Icons.Copy
-                className={`${
-                  value.trim() === "" ? "text-gray-400" : "text-green-700"
-                }`}
-              />
-            </Button>
+            {!isCopied && (
+              <Button
+                className="absolute bottom-1.5 right-[8px]"
+                aria-label="convert"
+                onClick={handleCopyClick}
+                style={{ backgroundColor: "transparent" }}
+              >
+                <Icons.Copy
+                  className={`${
+                    value.trim() === "" ? "text-gray-400" : "text-green-700"
+                  }`}
+                />
+              </Button>
+            )}
+            {isCopied && (
+              <Button
+                className="absolute bottom-1.5 right-[8px]"
+                aria-label="convert"
+                style={{ backgroundColor: "transparent" }}
+              >
+                <Icons.Check className="text-green-700" />
+              </Button>
+            )}
           </div>
           <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">{`Letters: ${
             textStats(value).characterCount
