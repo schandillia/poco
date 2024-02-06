@@ -1,34 +1,30 @@
-// import TitleCaseInput from "@/components/title-case/TitleCaseInput"
-
 "use client"
 
-import React, { useState } from "react"
-import PaperSection from "@/components/research/PaperSection"
-import ResearchSection from "@/components/research/ResearchSection"
-import PaperViewer from "@/components/research/PaperViewer"
-import ResearchChatbox from "@/components/research/ResearchChatbox"
+import React, { useRef, useEffect } from "react"
+import Dropzone from "react-dropzone"
 
 export default function Page() {
-  const [file, setFile] = useState<File | null>(null)
+  const bodyRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (bodyRef.current) {
+      const bodyRect = bodyRef.current.getBoundingClientRect()
+      const top = bodyRect.top
+      bodyRef.current.style.maxHeight = `calc(100vh - ${top}px - 4.3rem)`
+    }
+  }, [])
 
   return (
-    <div className="flex-1 justify-between flex flex-col h-[calc(100vh-3.5rem)]">
-      <div className="mx-auto w-full max-w-8xl grow lg:flex xl:px-2">
-        <div className="flex-1 xl:flex">
-          <div className="px-4 flex-1">
-            {/* Staging area */}
-            {!file && <PaperSection onFileDrop={setFile} setFile={setFile} />}
-            {file && <PaperViewer file={file} />}
-          </div>
-        </div>
-        <div className="flex-1 xl:flex">
-          <div className="px-4 flex-1  mt-8 md:mt-0">
-            {/* Research area */}
-            {!file && <ResearchSection />}
-            {file && <ResearchChatbox file={file} />}
-          </div>
-        </div>
+    <main className="mx-auto max-w-7xl px-5 md:p-10">
+      <div className="mt-8 flex flex-col items-start justify-between gap-4 border-b border-gray-300 dark:border-gray-500 pb-5 sm:flex-row sm:items-center sm:gap-0">
+        <h1 className="mb-3 font-bold text-5xl">Research</h1>
       </div>
-    </div>
+      <div
+        ref={bodyRef}
+        className="flex flex-col h-screen items-center justify-center"
+      >
+        Body
+      </div>
+    </main>
   )
 }

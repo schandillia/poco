@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   const blob = new Blob([arrayBuffer])
   const loader = new PDFLoader(blob)
   const pageLevelDocs = await loader.load()
-  const pagesAmt = pageLevelDocs.length
+  const pageCount = pageLevelDocs.length
   const paperName = await generateFileId(arrayBuffer)
 
   // Vectorize and index document
@@ -36,5 +36,5 @@ export async function POST(request: NextRequest) {
   //   namespace: paperName,
   // })
 
-  return NextResponse.json({ success: true, pages: pagesAmt })
+  return NextResponse.json({ success: true, pageCount, paperName })
 }
