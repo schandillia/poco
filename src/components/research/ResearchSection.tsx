@@ -8,7 +8,6 @@ function ResearchSection() {
       <div className="w-full max-h-screen border-2 rounded-md">
         <div className="flex flex-col h-screen max-h-[calc(100vh-4.3rem)] items-center justify-center">
           <div className="flex flex-col items-center gap-2">
-            <Icons.Loader className="h-8 w-8 text-green-600 animate-spin" />
             <h3 className="font-semibold text-xl">Waiting for paper...</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
               You can begin your research here once your paper is loaded
