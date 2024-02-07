@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
 import generateFileId from "@/lib/generate-file-id"
 import axios from "axios"
+import { useRouter } from "next/navigation"
 import React, { useRef, useEffect } from "react"
 import Dropzone from "react-dropzone"
 
@@ -18,6 +19,7 @@ function isUrlPdf(url: string) {
 export default function Page() {
   const bodyRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
+  const router = useRouter()
 
   useEffect(() => {
     if (bodyRef.current) {
@@ -33,20 +35,19 @@ export default function Page() {
     const blob = new Blob([arrayBuffer])
     const paperId = await generateFileId(arrayBuffer)
     const paperTitle = file.name
-    console.log({ paperTitle, paperId, blob })
 
-    // Route to research/[fileId]
-
-    // try {
-    //   const res = await fetch("/api/vectorize", {
-    //     method: "POST",
-    //     body: { fileId, blob },
-    //   })
-    //   if (!res.ok) throw new Error(await res.text())
-    //   console.log(await res.json())
-    // } catch (error: any) {
-    //   // handle error
-    // }
+    // Send file to api/upload for upload to S3
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: file,
+      })
+      if (!res.ok) throw new Error(await res.text())
+      console.log(await res.json())
+      router.push(`/research/${paperId}`)
+    } catch (error: any) {
+      // handle error
+    }
   }
 
   async function handleSubmit(event: any) {
