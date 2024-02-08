@@ -27,6 +27,7 @@ import {
   Trash,
   Copy,
   MoreVertical,
+  File,
 } from "lucide-react"
 import { MdKeyboardArrowRight, MdOutlineCloudUpload } from "react-icons/md"
 import { FcGoogle } from "react-icons/fc"
@@ -36,6 +37,7 @@ import { RiLoader3Fill } from "react-icons/ri"
 
 export const Icons = {
   Pdf: BsFileEarmarkPdfFill,
+  File,
   Apple: FaApple,
   Google: FcGoogle,
   Copy,
