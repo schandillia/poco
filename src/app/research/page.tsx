@@ -83,7 +83,7 @@ export default function Page() {
 
     // Send file to api/upload for upload to S3
     try {
-      const res = await fetch("/api/upload", {
+      const res = await fetch("/api/document", {
         method: "POST",
         body: file,
       })

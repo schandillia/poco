@@ -25,6 +25,7 @@ interface PaperViewerProps {
 }
 
 function PaperViewer({ file }: PaperViewerProps) {
+  // console.log("typeof file: ", typeof file)
   const session = useSession()
 
   const { toast } = useToast()
@@ -202,7 +203,7 @@ function PaperViewer({ file }: PaperViewerProps) {
       </div>
 
       <div className="flex-1 w-full max-h-screen">
-        <SimpleBar autoHide className="max-h-[calc(100vh-7.5rem)]">
+        <SimpleBar autoHide className="h-[calc(100vh-7.5rem)]">
           <div ref={ref}>
             <Document
               loading={

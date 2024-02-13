@@ -4,46 +4,40 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import useCurentUser from "@/app/hooks/use-current-user"
 import PaperViewer from "@/components/research/PaperViewer"
-import PaperSection from "@/components/research/PaperSection"
 
 export default function Page({ params }: { params: { paperId: string } }) {
   const [fileData, setFileData] = useState<ArrayBuffer | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [fileUrl, setFileUrl] = useState<string | null>(null) // Use fileUrl instead of fileData
-  const [isLoading, setIsLoading] = useState(false)
 
   const user = useCurentUser()
 
   useEffect(() => {
-    const fetchAndDisplayFile = async () => {
-      setIsLoading(true)
-      setError(null)
-
+    const fetchFile = async () => {
       try {
-        const response = await fetch(`/api/document/${params.paperId}`)
-        if (!response.ok) {
-          throw new Error(
-            `Error fetching presigned URL: ${response.statusText}`,
-          )
+        const response = await axios.post(
+          "/api/download",
+          {
+            key: `${params.paperId}.pdf`, // Assuming the key is the paperId
+          },
+          {
+            // headers: { "Content-Type": "application/json" }, // Set Content-Type
+          },
+        )
+        if (response.data.status === 200) {
+          console.log("returned: ", response.data)
+          // Optionally handle response processing based on your needs
+          // (e.g., convert to string, buffer, or pipe to response stream)
+          setFileData(response.data.bodyContents)
+        } else {
+          throw new Error("Unexpected response from API")
         }
-        const data = await response.json()
-        console.log("PRESIGNED URL: ", data.src)
-        // Fetch the file using the presigned URL
-        const bufferResponse = await fetch(data.src)
-        if (!bufferResponse.ok) {
-          console.log("BUFFERRESPONSE: ", { bufferResponse })
-          throw new Error(`Error fetching PDF: ${bufferResponse.statusText}`)
-        }
-        const arrayBuffer = await bufferResponse.arrayBuffer()
-        // Assign the converted ArrayBuffer to fileData
-        setFileData(arrayBuffer)
       } catch (error) {
+        console.error("Error fetching file:", error)
         setError((error as Error).message || "An error occurred")
-      } finally {
-        setIsLoading(false)
       }
     }
-    fetchAndDisplayFile()
+
+    fetchFile()
   }, [params.paperId])
 
   return (
@@ -59,7 +53,7 @@ export default function Page({ params }: { params: { paperId: string } }) {
               // Replace with your file rendering logic
               <PaperViewer file={fileData} />
             ) : (
-              <PaperSection />
+              <p>Loading...</p>
             )}
           </div>
         </div>
