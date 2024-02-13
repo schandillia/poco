@@ -34,7 +34,6 @@ function PaperViewer({ file }: PaperViewerProps) {
   const [scale, setScale] = useState<number>(1)
   const [rotation, setRotation] = useState<number>(0)
   const [renderedScale, setRenderedScale] = useState<number | null>(null)
-  const [copiedFile, setCopiedFile] = useState<ArrayBuffer | null>(null)
 
   const isLoading = renderedScale !== scale
 
@@ -72,13 +71,6 @@ function PaperViewer({ file }: PaperViewerProps) {
     // Map the normalized value to the expected range (0, 90, 180, 270)
     return Math.round(normalizedRotation / 90) * 90
   }
-
-  useEffect(() => {
-    const copiedFile = file.slice() // Make a copy of the file ArrayBuffer
-    // Any operations using copiedFile will not affect the original file ArrayBuffer
-    // You can use copiedFile instead of file in the rest of your code
-    setCopiedFile(copiedFile)
-  }, [file])
 
   return (
     <div className="w-full rounded-md shadow border-2 flex flex-col items-center">
@@ -205,7 +197,7 @@ function PaperViewer({ file }: PaperViewerProps) {
             <Icons.RotateRight className="h-4 w-4" />
           </Button>
           {/* Show paper fullscreen */}
-          {copiedFile && <PaperFullscreen file={copiedFile} />}
+          <PaperFullscreen file={file} />
         </div>
       </div>
 

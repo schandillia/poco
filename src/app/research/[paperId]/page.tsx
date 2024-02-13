@@ -51,7 +51,7 @@ export default function Page({ params }: { params: { paperId: string } }) {
           <div className="px-4 flex-1">
             {/* Staging area */}
             {error ? (
-              <p>Error: {error}</p>
+              <PaperSection error={true} />
             ) : fileData ? (
               // Render the fetched file data or component based on its format
               // Replace with your file rendering logic
