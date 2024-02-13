@@ -27,11 +27,9 @@ export default function Page({ params }: { params: { paperId: string } }) {
           )
         }
         const data = await response.json()
-        console.log("PRESIGNED URL: ", data.src)
         // Fetch the file using the presigned URL
         const bufferResponse = await fetch(data.src)
         if (!bufferResponse.ok) {
-          console.log("BUFFERRESPONSE: ", { bufferResponse })
           throw new Error(`Error fetching PDF: ${bufferResponse.statusText}`)
         }
         const arrayBuffer = await bufferResponse.arrayBuffer()

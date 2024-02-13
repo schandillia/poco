@@ -4,7 +4,7 @@ import { Document, Page, pdfjs } from "react-pdf"
 import "react-pdf/dist/Page/AnnotationLayer.css"
 import "react-pdf/dist/Page/TextLayer.css"
 import { useResizeDetector } from "react-resize-detector"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -25,7 +25,6 @@ interface PaperViewerProps {
 }
 
 function PaperViewer({ file }: PaperViewerProps) {
-  // console.log("typeof file: ", typeof file)
   const session = useSession()
 
   const { toast } = useToast()
@@ -35,6 +34,7 @@ function PaperViewer({ file }: PaperViewerProps) {
   const [scale, setScale] = useState<number>(1)
   const [rotation, setRotation] = useState<number>(0)
   const [renderedScale, setRenderedScale] = useState<number | null>(null)
+  const [copiedFile, setCopiedFile] = useState<ArrayBuffer | null>(null)
 
   const isLoading = renderedScale !== scale
 
@@ -72,6 +72,13 @@ function PaperViewer({ file }: PaperViewerProps) {
     // Map the normalized value to the expected range (0, 90, 180, 270)
     return Math.round(normalizedRotation / 90) * 90
   }
+
+  useEffect(() => {
+    const copiedFile = file.slice() // Make a copy of the file ArrayBuffer
+    // Any operations using copiedFile will not affect the original file ArrayBuffer
+    // You can use copiedFile instead of file in the rest of your code
+    setCopiedFile(copiedFile)
+  }, [file])
 
   return (
     <div className="w-full rounded-md shadow border-2 flex flex-col items-center">
@@ -198,7 +205,7 @@ function PaperViewer({ file }: PaperViewerProps) {
             <Icons.RotateRight className="h-4 w-4" />
           </Button>
           {/* Show paper fullscreen */}
-          <PaperFullscreen file={file} />
+          {copiedFile && <PaperFullscreen file={copiedFile} />}
         </div>
       </div>
 
