@@ -5,10 +5,12 @@ import useCurentUser from "@/app/hooks/use-current-user"
 import PaperViewer from "@/components/research/PaperViewer"
 import PaperSection from "@/components/research/PaperSection"
 import { useSearchParams } from "next/navigation"
+import ResearchSection from "@/components/research/ResearchSection"
+import ResearchChatbox from "@/components/research/ResearchChatbox"
 
 export default function Page({ params }: { params: { paperId: string } }) {
   const searchParams = useSearchParams()
-  const filename = searchParams.get("n")
+  const paperTitle = searchParams.get("n")
   const [fileData, setFileData] = useState<ArrayBuffer | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -65,7 +67,14 @@ export default function Page({ params }: { params: { paperId: string } }) {
         <div className="flex-1 xl:flex">
           <div className="px-4 flex-1  mt-8 md:mt-0">
             {/* Research area */}
-            <p>{filename}</p>
+            {fileData ? (
+              <ResearchChatbox
+                buffer={fileData}
+                paperTitle={paperTitle as string}
+              />
+            ) : (
+              <ResearchSection />
+            )}
           </div>
         </div>
       </div>

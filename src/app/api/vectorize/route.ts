@@ -12,15 +12,15 @@ async function streamToArrayBuffer(stream: ReadableStream) {
 }
 
 export async function POST(request: NextRequest) {
-  const data = await request.body
-
-  if (!data) return NextResponse.json({ success: false })
-  const arrayBuffer = await streamToArrayBuffer(data)
+  const response = await request.body
+  if (!response) return NextResponse.json({ success: false })
+  // Convert the ReadableStream to an ArrayBuffer
+  const arrayBuffer = await new Response(response).arrayBuffer()
   const blob = new Blob([arrayBuffer])
   const loader = new PDFLoader(blob)
   const pageLevelDocs = await loader.load()
   const pageCount = pageLevelDocs.length
-  const paperName = await generateFileId(arrayBuffer)
+  // const paperName = await generateFileId(arrayBuffer)
 
   // Vectorize and index document
   // Uncomment the following section when project ready because every OpenAI API call costs money
@@ -36,5 +36,7 @@ export async function POST(request: NextRequest) {
   //   namespace: paperName,
   // })
 
-  return NextResponse.json({ success: true, pageCount, paperName })
+  console.log({ success: true, pageCount })
+
+  return NextResponse.json({ success: true, pageCount })
 }

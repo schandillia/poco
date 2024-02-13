@@ -8,21 +8,20 @@ import ResearchInput from "@/components/research/ResearchInput"
 import ResearchChat from "@/components/research/ResearchChat"
 
 interface ResearchChatboxProps {
-  file: File
+  buffer: ArrayBuffer
+  paperTitle: string
 }
-function ResearchChatbox({ file }: ResearchChatboxProps) {
+function ResearchChatbox({ buffer, paperTitle }: ResearchChatboxProps) {
   const [isVectorized, setIsVectorized] = useState(false)
   const [isPaperError, setIsPaperError] = useState(false)
-  const [paperTitle, setPaperTitle] = useState("")
   const [userQuery, setUserQuery] = useState("")
   const [chatStream] = useState<string[]>([])
 
-  const handleVectorize = async (givenFile: File) => {
-    setPaperTitle(givenFile.name)
+  const handleVectorize = async (givenBuffer: ArrayBuffer) => {
     try {
       const res = await fetch("/api/vectorize", {
         method: "POST",
-        body: givenFile,
+        body: givenBuffer,
       })
       if (!res.ok) throw new Error(await res.text())
       console.log(await res.json())
@@ -32,7 +31,7 @@ function ResearchChatbox({ file }: ResearchChatboxProps) {
     }
   }
   useEffect(() => {
-    if (file) handleVectorize(file)
+    if (buffer) handleVectorize(buffer)
   }, [])
 
   const handleEnteredText = (enteredText: string) => {
