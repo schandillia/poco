@@ -36,7 +36,5 @@ export async function POST(request: NextRequest) {
   //   namespace: paperName,
   // })
 
-  console.log({ success: true, pageCount })
-
   return NextResponse.json({ success: true, pageCount })
 }
