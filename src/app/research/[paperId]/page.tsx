@@ -1,15 +1,16 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import axios from "axios"
 import useCurentUser from "@/app/hooks/use-current-user"
 import PaperViewer from "@/components/research/PaperViewer"
 import PaperSection from "@/components/research/PaperSection"
+import { useSearchParams } from "next/navigation"
 
 export default function Page({ params }: { params: { paperId: string } }) {
+  const searchParams = useSearchParams()
+  const filename = searchParams.get("n")
   const [fileData, setFileData] = useState<ArrayBuffer | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [fileUrl, setFileUrl] = useState<string | null>(null) // Use fileUrl instead of fileData
   const [isLoading, setIsLoading] = useState(false)
 
   const user = useCurentUser()
@@ -62,7 +63,10 @@ export default function Page({ params }: { params: { paperId: string } }) {
           </div>
         </div>
         <div className="flex-1 xl:flex">
-          <div className="px-4 flex-1  mt-8 md:mt-0">{/* Research area */}</div>
+          <div className="px-4 flex-1  mt-8 md:mt-0">
+            {/* Research area */}
+            <p>{filename}</p>
+          </div>
         </div>
       </div>
     </div>

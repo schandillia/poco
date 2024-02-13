@@ -76,9 +76,7 @@ export default function Page() {
     setUploadedFile(paperTitle)
     setIsUploading(true)
     const progressInterval = startSimulatedProgress()
-    // Convert file to blob
     const arrayBuffer = await file.arrayBuffer()
-    const blob = new Blob([arrayBuffer])
     const paperId = await generateFileId(arrayBuffer)
 
     // Send file to api/upload for upload to S3
@@ -88,10 +86,17 @@ export default function Page() {
         body: file,
       })
       if (!res.ok) throw new Error(await res.text())
-      console.log(await res.json())
       clearInterval(progressInterval)
       setUploadProgress(100)
-      router.push(`/research/${paperId}`)
+      const filenameWithoutExtension = paperTitle.substring(
+        0,
+        paperTitle.lastIndexOf("."),
+      )
+      router.push(
+        `/research/${paperId}?n=${encodeURIComponent(
+          filenameWithoutExtension,
+        )}`,
+      )
     } catch (error: any) {
       // handle error
     }
