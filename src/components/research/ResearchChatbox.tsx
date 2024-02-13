@@ -46,12 +46,12 @@ function ResearchChatbox({ buffer, paperTitle }: ResearchChatboxProps) {
   return (
     <div className="w-full rounded-md shadow border-2 flex flex-col items-center">
       {/* Chat header */}
-      <div className="h-14 w-full border-b flex items-center justify-between px-2">
-        {paperTitle && (
-          <div className="max-w-sm">
-            <p className="font-semibold truncate">{paperTitle}</p>
-          </div>
-        )}
+      <div className="h-14 w-full border-b flex items-center justify-center px-2">
+        <div className="max-w-sm ml-2">
+          <p className="font-semibold truncate">
+            {paperTitle ? paperTitle : "Untitled Paper"}
+          </p>
+        </div>
       </div>
 
       {/* Chat body */}
@@ -78,7 +78,7 @@ function ResearchChatbox({ buffer, paperTitle }: ResearchChatboxProps) {
                 <h3 className="font-semibold text-xl">
                   Preparing your paper...
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <p className="text-gray-600 dark:text-gray-400">
                   This shouldn’t take long.
                 </p>
               </div>

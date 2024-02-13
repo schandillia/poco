@@ -9,7 +9,7 @@ function ResearchSection() {
         <div className="flex flex-col h-screen max-h-[calc(100vh-4.3rem)] items-center justify-center">
           <div className="flex flex-col items-center gap-2">
             <h3 className="font-semibold text-xl">Waiting for paper...</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
+            <p className="text-gray-600 dark:text-gray-400">
               You can begin your research here once your paper is loaded
             </p>
           </div>
