@@ -38,3 +38,13 @@ export const RegisterSchema = z
     message: "Passwords must match",
     path: ["confirmPassword"], // path of error
   })
+
+export const PaperSchema = z.object({
+  id: z.string().uuid({ message: "ID must be a valid UUID" }), // Assuming custom generation
+  paperTitle: z.string().min(1, {
+    message: "Paper title is required and must be at least 1 character",
+  }),
+  pageCount: z
+    .number()
+    .min(1, { message: "Page count must be a positive integer" }),
+})

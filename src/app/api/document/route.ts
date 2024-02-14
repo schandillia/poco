@@ -1,13 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
-import generateFileId from "@/lib/generate-file-id"
 import { PDFLoader } from "langchain/document_loaders/fs/pdf"
 import {
-  S3Client,
   PutObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
 } from "@aws-sdk/client-s3"
 import createS3Client from "@/lib/create-s3-client"
+import { PaperSchema } from "@/schemas"
+import { db } from "@/lib/db"
+import * as z from "zod"
+import { v4 } from "uuid"
+
+const paperId = v4()
 
 const s3 = createS3Client()
 
@@ -17,15 +21,15 @@ async function streamToArrayBuffer(stream: ReadableStream) {
 }
 
 export async function POST(request: NextRequest) {
-  const data = await request.body
-  if (!data) return NextResponse.json({ success: false })
-
-  const arrayBuffer = await streamToArrayBuffer(data)
+  const formData = await request.formData()
+  const file = formData.get("file") as File
+  if (!file) throw new Error("No file uploaded")
+  const arrayBuffer = await file.arrayBuffer()
+  const paperTitle = file.name
   const blob = new Blob([arrayBuffer])
   const loader = new PDFLoader(blob)
   const pageLevelDocs = await loader.load()
   const pageCount = pageLevelDocs.length
-  const paperId = await generateFileId(arrayBuffer)
 
   // STEP 1: Upload file to S3
   try {
@@ -33,7 +37,7 @@ export async function POST(request: NextRequest) {
       new PutObjectCommand({
         Bucket: process.env.AWS_S3_BUCKET_NAME, // Your S3 bucket name
         Key: `${paperId}.pdf`, // Desired filename in S3
-        Body: arrayBuffer, // File content
+        Body: Buffer.from(arrayBuffer), // File content
       }),
     )
 
@@ -67,9 +71,35 @@ export async function POST(request: NextRequest) {
 
     // Option 4: Use server-side S3 events (configure Lambda function)
 
-    return NextResponse.json({ success: true, pageCount, paperId })
+    try {
+      // Validate using Zod
+      const validatedFields = PaperSchema.parse({
+        id: paperId,
+        paperTitle,
+        pageCount,
+      })
+      // Create entry in prisma file db
+      await db.paper.create({
+        data: validatedFields,
+      })
+
+      return NextResponse.json({ validatedFields }, { status: 200 })
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Validation failed, access error details
+        console.error("Validation errors:", error.issues)
+        // Example: Log each issue's code and message
+        error.issues.forEach((issue) => {
+          console.error(`${issue.code}: ${issue.message}`)
+        })
+        // Handle the errors appropriately (e.g., return a response with error messages to the client)
+        return NextResponse.json({ error: "Invalid fields" }, { status: 400 })
+      } else {
+        return NextResponse.json({ error: "Validation error" }, { status: 400 })
+      }
+    }
   } catch (error) {
     console.error("Error uploading file to S3:", error)
-    return NextResponse.json({ success: false, error: "File upload failed" })
+    return NextResponse.json({ error: "File upload failed" }, { status: 500 })
   }
 }

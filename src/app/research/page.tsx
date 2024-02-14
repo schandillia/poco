@@ -4,7 +4,6 @@ import { Icons } from "@/components/commons/Icons"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import generateFileId from "@/lib/generate-file-id"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import React, { useRef, useEffect, useState } from "react"
@@ -77,26 +76,22 @@ export default function Page() {
     setIsUploading(true)
     const progressInterval = startSimulatedProgress()
     const arrayBuffer = await file.arrayBuffer()
-    const paperId = await generateFileId(arrayBuffer)
 
     // Send file to api/upload for upload to S3
     try {
+      const formData = new FormData()
+      formData.append("file", file)
       const res = await fetch("/api/document", {
         method: "POST",
-        body: file,
+        body: formData,
       })
       if (!res.ok) throw new Error(await res.text())
+      const data = await res.json()
+      const paperId = data.validatedFields.id
+      const paperTitle = data.validatedFields.paperTitle
       clearInterval(progressInterval)
       setUploadProgress(100)
-      const filenameWithoutExtension = paperTitle.substring(
-        0,
-        paperTitle.lastIndexOf("."),
-      )
-      router.push(
-        `/research/${paperId}?n=${encodeURIComponent(
-          filenameWithoutExtension,
-        )}`,
-      )
+      router.push(`/research/${paperId}`)
     } catch (error: any) {
       // handle error
     }

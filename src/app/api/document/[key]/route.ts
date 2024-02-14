@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+import { getPaperById } from "@/data/paper"
 
 // Securely import AWS credentials from environment variables
 const S3_REGION = process.env.AWS_S3_REGION
@@ -31,23 +32,11 @@ export async function GET(_: Request, { params }: { params: { key: string } }) {
     Key: `${params.key}.pdf`,
   })
 
-  const src = await getSignedUrl(s3Client, command, { expiresIn: 3600 })
+  const content = await getSignedUrl(s3Client, command, { expiresIn: 3600 })
 
-  // // Fetch the PDF using the presigned URL
-  // const pdfResponse = await fetch(src)
-  // if (!pdfResponse.ok) {
-  //   return NextResponse.json(
-  //     { error: "Failed to fetch PDF" },
-  //     { status: pdfResponse.status },
-  //   )
-  // }
-  // // Read the PDF content
-  // const pdfArrayBuffer = await pdfResponse.arrayBuffer()
-  // // Create a response object (ensure this happens before header setting)
-  // const nextResponse: NextResponse = NextResponse.next()
-  // // Return the PDF data or base64-encoded string
-  // nextResponse.setHeader("Content-Type", "application/pdf")
-  // NextResponse.end(pdfArrayBuffer) // Or res.end(btoa(pdfArrayBuffer));
+  // Retrieve paperTitle from Prisma table using key
+  const paper = await getPaperById(params.key)
+  const title = paper?.paperTitle
 
-  return NextResponse.json({ src })
+  return NextResponse.json({ content, title })
 }

@@ -83,3 +83,10 @@ model TwoFactorConfirmation {
 
   @@unique([userId])
 }
+
+model Paper {
+  id        String   @id @default(cuid())
+  pageCount  Int?
+  paperTitle  String?
+  // ... other relevant fields for your table
+}

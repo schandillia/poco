@@ -4,15 +4,13 @@ import { useState, useEffect } from "react"
 import useCurentUser from "@/app/hooks/use-current-user"
 import PaperViewer from "@/components/research/PaperViewer"
 import PaperSection from "@/components/research/PaperSection"
-import { useSearchParams } from "next/navigation"
 import ResearchSection from "@/components/research/ResearchSection"
 import ResearchChatbox from "@/components/research/ResearchChatbox"
 
 export default function Page({ params }: { params: { paperId: string } }) {
-  const searchParams = useSearchParams()
-  const paperTitle = searchParams.get("n")
   const [fileData, setFileData] = useState<ArrayBuffer | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [paperTitle, setPaperTitle] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
   const user = useCurentUser()
@@ -31,7 +29,11 @@ export default function Page({ params }: { params: { paperId: string } }) {
         }
         const data = await response.json()
         // Fetch the file using the presigned URL
-        const bufferResponse = await fetch(data.src)
+        const { content, title } = data
+
+        // Retrieve paper title, remove extension
+        setPaperTitle(title.substring(0, title.lastIndexOf(".")))
+        const bufferResponse = await fetch(content)
         if (!bufferResponse.ok) {
           throw new Error(`Error fetching PDF: ${bufferResponse.statusText}`)
         }
