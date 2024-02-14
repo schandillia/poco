@@ -24,9 +24,22 @@ function Message({ message }: MessageProps) {
   const displayName = name ? initials(name) : null
 
   return (
-    <div className="flex items-center">
-      <p className="text-md">{message}</p>
-      <Avatar className="w-6 h-6 bg-slate-400 items-center justify-center m-5">
+    <div className="flex items-end">
+      <div className="chat chat-end">
+        <div className="chat-image avatar">
+          <div className="w-10 rounded-full mr-5 bg-gray-200 dark:bg-gray-900">
+            {image ? (
+              <img alt="Tailwind CSS chat bubble component" src={image} />
+            ) : (
+              <Icons.User className="text-green-600 mx-auto" />
+            )}
+          </div>
+        </div>
+        <div className="chat-bubble bg-white dark:bg-black text-black dark:text-white shadow-md">
+          {message}
+        </div>
+      </div>
+      {/* <Avatar className="w-6 h-6 bg-slate-400 items-center justify-center mr-5 mb-2">
         {image ? (
           <div className="relative aspect-square h-full w-full">
             <Image
@@ -46,7 +59,7 @@ function Message({ message }: MessageProps) {
             {!displayName && <Icons.User className="h-4 w-4 text-green-600" />}
           </AvatarFallback>
         )}
-      </Avatar>
+      </Avatar> */}
     </div>
   )
 }
